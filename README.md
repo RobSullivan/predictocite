@@ -42,7 +42,11 @@ run tests
 `python manage.py test`
 
 
-##
+##Start application
+
+In command prompt `python manage.py shell` 
+
+>>>db.create_all()
 
 python manage.py runserver
 
