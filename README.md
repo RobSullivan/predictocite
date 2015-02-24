@@ -1,8 +1,6 @@
 # README #
 
-Predictocite is my MSc project.
-
-Using the title and abstract of an article predict if it will gain between one and ten citations, or not, in the first two years after publication. 
+Predictocite uses the title and abstract of an article to predict if it will gain between one and ten citations, or not, in the first two years after publication. 
 
 
 ##Set up virtualenv
@@ -27,7 +25,20 @@ easy_install scipy.exe
 
 ##Start database server
 TODO
+- install postgres
+- upload data
 
 ##Run tests
 
-python manage.py test
+cd to home dir
+activate virutalevn `Scripts\activate`
+
+run tests
+`python manage.py test`
+
+
+##
+
+python manage.py runserver
+
+navigate to localhost://5000
