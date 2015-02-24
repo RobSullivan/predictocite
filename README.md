@@ -3,30 +3,35 @@
 Predictocite uses the title and abstract of an article to predict if it will gain between one and ten citations, or not, in the first two years after publication. 
 
 
-##Set up virtualenv
+##Set up a virtualenv
 
-On Windows
+Windows instructions.
 
 
 ##Clone from bitbucket
 
-git clone
+`git clone https://rsullivan@bitbucket.org/rsullivan/predictocite-flask.git`
 
-##To install
+##Install
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
-##Installing scipy in virtualenv on Windows
+##A note on installing scipy and numpy in a virtualenv on Windows
 
-Download scipy==0.14.0 for Windows and Python version and add .exe file to home dir
+The quickest way found is to add the .exes to the home directory and
+run
 
-easy_install scipy.exe
+`easy_install scipy.exe`
+`easy_install numpy.exe`
+
+Versions used are scipy==0.14.0 and numpy==1.9.1 (Python3.4)
+
+Installation may be different on other operating systems.
 
 
-##Start database server
-TODO
-- install postgres
-- upload data
+##Data stores
+Combination of SQLite and pickles.
+
 
 ##Run tests
 
