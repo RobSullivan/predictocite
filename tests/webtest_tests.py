@@ -18,10 +18,7 @@ class TestNavigateToIndex(PredictoCiteTestCase):
 		res = self.app.get('/')
 		assert_equal(res.status, '200 OK')
 
-	def test_user_knows_they_are_at_predictocite(self):
-
-		res = self.app.get('/').maybe_follow()
-
+	
 
 class TestUserCanSubmitData(PredictoCiteTestCase):
 
