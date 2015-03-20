@@ -22,4 +22,4 @@ class TestNavigateToIndex(PredictoCiteTestCase):
 
 class TestUserCanSubmitData(PredictoCiteTestCase):
 
-	pass:
+	pass
