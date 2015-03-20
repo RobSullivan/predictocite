@@ -31,7 +31,7 @@ class TextPreprocessor:
 
 	def __init__(self, articles):
 		self.articles = articles
-		self.count_vect = CountVectorizer()
+		self.count_vect = CountVectorizer(max_df=1, stop_words='english')
 		self.tf_transformer = TfidfTransformer()
 
 	def split_data(self):

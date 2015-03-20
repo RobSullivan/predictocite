@@ -48,3 +48,10 @@ class TestPreprocessingOfData(unittest.TestCase):
 		#data = preprocessor.split_data()
 		X_train_tfidf = preprocessor.tfidf_fit_transform()# is a helper method for tfidf_transformer.fit_transform()
 		self.assertTrue(hasattr(X_train_tfidf, 'shape'))
+
+	def test_write_tfidf_to_pickle(self):
+		"""
+		For convenience of not using a datastore, write vector out using pickling
+
+		"""
+		pass

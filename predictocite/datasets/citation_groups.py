@@ -2,9 +2,9 @@
 
 modelled on https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/datasets/twenty_newsgroups.py#L151
 
-This dataset loader will download title and abstract data of citation groups and sub_groups ['new_instance', 'train', 'test'] 
+This dataset loader will retrieve title and abstract data of citation groups 
 
-The data is downloaded to the '~/predictocite_engine_data' folder.
+Would it be useful to write the data out to pickles?
 
 The `fetch_citationgroups` function will not vectorize the data into numpy arrays
 
