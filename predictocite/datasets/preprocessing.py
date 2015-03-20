@@ -51,7 +51,7 @@ class TextPreprocessor:
 	def tfidf_fit_transform(self):
 		X_train_counts = self.bag_of_words()
 		
-		X_train_tf = self.tf_transformer.fit_transform(X_train_counts)
+		X_train_tf = self.tf_transformer.fit_transform(X_train_counts)#fit_transform creates a vocbulary index
 		return X_train_tf
 		
 

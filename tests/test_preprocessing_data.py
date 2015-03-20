@@ -1,5 +1,6 @@
 import unittest
 
+from nose.tools import nottest
 
 
 from predictocite.datasets.citation_groups import fetch_citationgroups
@@ -12,6 +13,14 @@ class TestPreprocessingOfData(unittest.TestCase):
 	def setUp(self):
 		groups = ['one_to_ten_citations']
 		self.articles = fetch_citationgroups(groups)
+
+	@nottest
+	def test_write_tfidf_to_pickle(self):
+		"""
+		For convenience of not using a datastore, write vector out using pickling
+
+		"""
+		pass
 		
 		
 
@@ -49,9 +58,3 @@ class TestPreprocessingOfData(unittest.TestCase):
 		X_train_tfidf = preprocessor.tfidf_fit_transform()# is a helper method for tfidf_transformer.fit_transform()
 		self.assertTrue(hasattr(X_train_tfidf, 'shape'))
 
-	def test_write_tfidf_to_pickle(self):
-		"""
-		For convenience of not using a datastore, write vector out using pickling
-
-		"""
-		pass
