@@ -14,6 +14,13 @@ class TestPreprocessingOfData(unittest.TestCase):
 		groups = ['one_to_ten_citations']
 		self.articles = fetch_citationgroups(groups)
 
+	def test_create_sparse_matrix(self):
+		"""
+		Once have vocab indexed create spare matrix 
+		"""
+
+		self.assertTrue(hasattr(smart_matrix, 'shape'))
+
 	@nottest
 	def test_write_tfidf_to_pickle(self):
 		"""
