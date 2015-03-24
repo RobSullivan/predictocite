@@ -62,12 +62,15 @@ class TestPreprocessingOfData(unittest.TestCase):
 
 	def test_term_frequency_features(self):
 		"""
-		tf-idf helper after bag_of_words.
+		tf-idf helper test
 		The last step before classification
 		"""
 		#tfidf_transformer = TfidfTransformer()
 		preprocessor = TextPreprocessor(self.articles)
-		#data = preprocessor.split_data()
-		X_train_tfidf = preprocessor.tfidf_fit_transform()# is a helper method for tfidf_transformer.fit_transform()
-		self.assertTrue(hasattr(X_train_tfidf, 'shape'))
+		split_data = preprocessor.split_data()
+		
+		term_freq_matrix = preprocessor.frequency_term_matrix(split_data['train'])
+		
+		tfidf = preprocessor.tfidf_fit_transform(term_freq_matrix)# is a helper method for tfidf_transformer.fit_transform()
+		self.assertTrue(hasattr(tfidf, 'shape'))
 

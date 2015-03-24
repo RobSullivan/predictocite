@@ -45,24 +45,23 @@ class TextPreprocessor:
 	def bag_of_words(self):
 		"""Transforms into a vector, probably should rename from bag_of_words"""
 		training_data = self.split_data()
-		X_train_counts = self.count_vect.fit_transform(training_data['train']) # this changes state of self.count_vect
-		return X_train_counts 
+		term_freq_vectors = self.count_vect.fit_transform(training_data['train']) # this changes state of self.count_vect
+		return term_freq_vectors 
 
 	def frequency_term_matrix(self, data):
 		"""takes train set and returns frequency_term matrix"""
 		self.count_vect.fit_transform(data);
-		smatrix = self.count_vect.transform(data)
+		sparse_matrix = self.count_vect.transform(data)
 		
 
 
-		return smatrix.todense()
+		return sparse_matrix.todense()
 		
 
-	def tfidf_fit_transform(self):
-		X_train_counts = self.bag_of_words()
-		
-		X_train_tf = self.tf_transformer.fit_transform(X_train_counts)#fit_transform creates a vocbulary index
-		return X_train_tf
+	def tfidf_fit_transform(self, freq_term_matrix):
+				
+		tfidf = self.tf_transformer.fit_transform(freq_term_matrix)#fit_transform creates a vocbulary index
+		return tfidf
 		
 
 
