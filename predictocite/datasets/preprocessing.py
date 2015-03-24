@@ -32,7 +32,7 @@ class TextPreprocessor:
 	def __init__(self, articles):
 		self.articles = articles
 		self.count_vect = CountVectorizer(max_df=1, stop_words='english', ngram_range=(1, 2))
-		self.tf_transformer = TfidfTransformer()
+		self.tf_transformer = TfidfTransformer(norm='l2')
 
 	def split_data(self):
 		split_datasets = {}
@@ -48,8 +48,8 @@ class TextPreprocessor:
 		X_train_counts = self.count_vect.fit_transform(training_data['train']) # this changes state of self.count_vect
 		return X_train_counts 
 
-	def smart_matrix(self, data):
-		"""takes train set"""
+	def frequency_term_matrix(self, data):
+		"""takes train set and returns frequency_term matrix"""
 		self.count_vect.fit_transform(data);
 		smatrix = self.count_vect.transform(data)
 		

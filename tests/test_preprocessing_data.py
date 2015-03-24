@@ -16,16 +16,16 @@ class TestPreprocessingOfData(unittest.TestCase):
 		preprocessor = TextPreprocessor(self.articles)
 		split_data = preprocessor.split_data()
 
-	def test_create_sparse_matrix(self):
+	def test_create_frequency_term_matrix(self):
 		"""
-		Once have vocab indexed create spare matrix 
+		Once have vocab indexed create frequency_term matrix 
 		"""
 		preprocessor = TextPreprocessor(self.articles)
 		split_data = preprocessor.split_data()
 		preprocessor.count_vect.fit_transform(split_data['train'])
-		smart_matrix = preprocessor.smart_matrix(split_data['train']) #preprocessor.count_vect.transform(split_data['train'])
+		frequency_term_matrix = preprocessor.frequency_term_matrix(split_data['train']) #preprocessor.count_vect.transform(split_data['train'])
 		
-		self.assertTrue(hasattr(smart_matrix, 'transpose'))
+		self.assertTrue(hasattr(frequency_term_matrix, 'transpose'))
 
 	@nottest
 	def test_write_tfidf_to_pickle(self):
@@ -39,7 +39,7 @@ class TestPreprocessingOfData(unittest.TestCase):
 
 	def test_preprocessing_bag_of_words(self):
 		"""
-		bag_of_words will return a scipy.sparse.csr.csr_matrix so test for these attrs.
+		bag_of_words will return a scipy.frequency_term.csr.csr_matrix so test for these attrs.
 		
 		"""
 		
