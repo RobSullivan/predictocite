@@ -1,7 +1,10 @@
 
 
+from sklearn.pipeline import Pipeline
 
-"""
+
+class BuildClassifier(Pipeline):
+	"""
 Code inspired by https://www.safaribooksonline.com/library/view/
 learning-scikit-learn-machine/9781783281930/ch02s02.html
 
@@ -18,7 +21,7 @@ docstring for TestBuildClassifier
 	accepts a vectorizer and a Bayes classifier.
 	As per ch02 of 'Learning scikit-learn:Machine Learning in
 	Python I have used the MultinomialNB class.
-	Will also use the TfidVectorizer
+	Will also use the TfidfVectorizer
 	TfidfTransformer
 	
 
@@ -26,5 +29,12 @@ docstring for TestBuildClassifier
 	-------
 	vect - TfidfVectorizer
 	clf - Classifier, the MultinomialNB class
-	"""
+
 """
+	pass
+
+
+
+
+if __name__ == '__main__':
+	unittest.main() #er, what does unittest.main() mean? where did it come from?

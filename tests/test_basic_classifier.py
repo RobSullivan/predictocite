@@ -1,5 +1,12 @@
 import unittest
 
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+
+from predictocite.classifiers.build_classifier import BuildClassifier
+
+
 class TestBuildClassifier(unittest.TestCase):
 	"""
 	TestBuildClassifier - aim is to build a classifer that 
@@ -15,7 +22,7 @@ class TestBuildClassifier(unittest.TestCase):
 
 	For reference see ch02 of 'Learning scikit-learn:Machine Learning in
 	Python.
-	vectorizer and classifier will be TfidVectorizer and MultinomialNB
+	vectorizer and classifier will be TfidfVectorizer and MultinomialNB
 	as these give best performance in the book. Eventually try other vectorizers
 	and other classifiers for comparison.
 	
@@ -25,4 +32,16 @@ class TestBuildClassifier(unittest.TestCase):
 	vect - TfidfVectorizer
 	clf - Classifier, the MultinomialNB class
 	"""
+	def setUp(self):
+		self.vect = TfidfVectorizer()
+		self.clf = MultinomialNB()
+		self.steps = [('vect', self.vect),
+		('clf', self.clf)]# list of tuples
+
+	def test_create_pipeline(self):
+
+		pipeline = Pipeline(self.steps)
+		build_clf = BuildClassifier(self.steps)
+		
+		self.assertEqual(build_clf, pipeline)
 	
