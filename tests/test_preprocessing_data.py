@@ -21,6 +21,7 @@ class TestPreprocessingOfData(unittest.TestCase):
 	@nottest
 	def test_write_tfidf_to_pickle(self):
 		"""
+		STILL TO IMPLEMENT
 		For convenience of not using a datastore, write tfidf_matrix 
 		out to a pickle.
 		"""
