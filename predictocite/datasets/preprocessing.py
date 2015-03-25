@@ -20,11 +20,7 @@ class TextPreprocessor:
 
 	   articles: document data for citation groups represented as a list.
 	   has the following attributes in addition to usual list attrs:
-	   data - list of documents as str objects
-	   citation_count - number of citations per document (two years after publication)
-	   obect_ids - MongoDb Id 
-	   target - label
-	   target_names - list of all labels
+	   
 
 
 	"""
@@ -60,10 +56,19 @@ class TextPreprocessor:
 
 	def tfidf_fit_transform(self, freq_term_matrix):
 				
-		tfidf = self.tf_transformer.fit_transform(freq_term_matrix)#fit_transform creates a vocbulary index
+		tfidf = self.tf_transformer.fit(freq_term_matrix)#fit_transform creates a vocbulary index
 		return tfidf
 		
 
+	def save_pickle(self, groups, tf_idf_matrix):
+		file_name = 'tf_idf_matrix'+groups[0]+'.pickle'
+		try:
+			with open(file_name, 'wb') as f:
+				pickle.dump(tf_idf_matrix, f, pickle.HIGHEST_PROTOCOL)
+		except Exception, e:
+			raise
+			
+		
 
 
 

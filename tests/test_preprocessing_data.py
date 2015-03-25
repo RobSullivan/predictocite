@@ -11,29 +11,20 @@ class TestPreprocessingOfData(unittest.TestCase):
 	TestPreprocessingOfData tests turning text into numbers
 	"""
 	def setUp(self):
-		groups = ['one_to_ten_citations']
-		self.articles = fetch_citationgroups(groups)
+		self.groups = ['one_to_ten_citations']
+		self.articles = fetch_citationgroups(self.groups)
 		preprocessor = TextPreprocessor(self.articles)
 		split_data = preprocessor.split_data()
 
-	def test_create_frequency_term_matrix(self):
-		"""
-		Once have vocab indexed create frequency_term matrix 
-		"""
-		preprocessor = TextPreprocessor(self.articles)
-		split_data = preprocessor.split_data()
-		preprocessor.count_vect.fit_transform(split_data['train'])
-		frequency_term_matrix = preprocessor.frequency_term_matrix(split_data['train']) #preprocessor.count_vect.transform(split_data['train'])
-		
-		self.assertTrue(hasattr(frequency_term_matrix, 'transpose'))
+	
 
 	@nottest
 	def test_write_tfidf_to_pickle(self):
 		"""
-		For convenience of not using a datastore, write vector out using pickling
-
+		For convenience of not using a datastore, write tfidf_matrix 
+		out to a pickle.
 		"""
-		pass
+		preprocessor.save_pickle(tfidf_matrix)
 		
 		
 
@@ -60,6 +51,17 @@ class TestPreprocessingOfData(unittest.TestCase):
 		self.assertEqual(len(split_data['train']), 723)
 		self.assertEqual(len(split_data['test']), 242)
 
+	def test_create_frequency_term_matrix(self):
+		"""
+		Once have vocab indexed create frequency_term matrix 
+		"""
+		preprocessor = TextPreprocessor(self.articles)
+		split_data = preprocessor.split_data()
+		preprocessor.count_vect.fit_transform(split_data['train'])
+		frequency_term_matrix = preprocessor.frequency_term_matrix(split_data['train']) #preprocessor.count_vect.transform(split_data['train'])
+		
+		self.assertTrue(hasattr(frequency_term_matrix, 'transpose'))
+
 	def test_term_frequency_features(self):
 		"""
 		tf-idf helper test
@@ -72,5 +74,17 @@ class TestPreprocessingOfData(unittest.TestCase):
 		term_freq_matrix = preprocessor.frequency_term_matrix(split_data['train'])
 		
 		tfidf = preprocessor.tfidf_fit_transform(term_freq_matrix)# is a helper method for tfidf_transformer.fit_transform()
-		self.assertTrue(hasattr(tfidf, 'shape'))
+		self.assertEqual(tfidf.norm, 'l2')
+
+
+	
+	def test_tfidf_weighting(self):
+		preprocessor = TextPreprocessor(self.articles)
+		split_data = preprocessor.split_data()
+		term_freq_matrix = preprocessor.frequency_term_matrix(split_data['train'])
+
+		tfidf = preprocessor.tfidf_fit_transform(term_freq_matrix)#helper only fits
+		tfidf_matrix = preprocessor.tf_transformer.transform(term_freq_matrix)
+		preprocessor.save_pickle(self.groups, tfidf_matrix)
+		self.assertEqual(sum(tfidf_matrix), 1)
 
