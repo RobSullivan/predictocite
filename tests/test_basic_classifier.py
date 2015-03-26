@@ -43,5 +43,5 @@ class TestBuildClassifier(unittest.TestCase):
 		pipeline = Pipeline(self.steps)
 		build_clf = BuildClassifier(self.steps)
 		
-		self.assertEqual(build_clf, pipeline)
+		self.assertIsInstance(build_clf.pipeline, pipeline)
 	
