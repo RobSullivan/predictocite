@@ -5,6 +5,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 
 from predictocite.classifiers.build_classifier import BuildClassifier
+from predictocite.datasets.citation_groups import fetch_citationgroups
 
 
 class TestBuildClassifier(unittest.TestCase):
@@ -37,6 +38,14 @@ class TestBuildClassifier(unittest.TestCase):
 		self.clf = MultinomialNB()
 		self.steps = [('vect', self.vect),
 		('clf', self.clf)]# list of tuples
+		self.articles = fetch_citationgroups()
+
+
+	def tearDown(self):
+		self.vect = None
+		self.clf = None
+		self.steps = None
+		self.articles = None
 
 	def test_create_pipeline(self):
 
@@ -47,5 +56,11 @@ class TestBuildClassifier(unittest.TestCase):
 
 	def test_build_classifier_has_evaluate_cross_validation_method(self):
 
+		build_clf = BuildClassifier(self.steps)
 		self.assertTrue(hasattr(build_clf, 'evaluate_cross_validation'))
+
+	def test_build_classifier_has_all_the_data(self):
+		build_clf = BuildClassifier(self.steps, self.articles)
+		self.assertGreater(len(build_clf.articles['data']), 1000)#len = 1644
+
 	
