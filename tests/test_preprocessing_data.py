@@ -84,8 +84,11 @@ class TestPreprocessingOfData(unittest.TestCase):
 		split_data = preprocessor.split_data()
 		term_freq_matrix = preprocessor.frequency_term_matrix(split_data['train'])
 
-		
+		#calculate the idf for term frequency matrix with fit()
 		preprocessor.tf_transformer.fit(term_freq_matrix)
+		# once calculated transform the term_freq_matrix
+		# to the tf-idf weight matrix
+		tf_idf_matrix = preprocessor.tf_transformer.transform(term_freq_matrix)
 		
-		self.assertTrue(preprocessor.tf_transformer, 'idf_')
+		self.assertTrue(hasattr(tf_idf_matrix.todense(), 'shape'))
 
