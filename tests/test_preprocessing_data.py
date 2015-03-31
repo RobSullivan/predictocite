@@ -16,6 +16,10 @@ class TestPreprocessingOfData(unittest.TestCase):
 		preprocessor = TextPreprocessor(self.articles)
 		split_data = preprocessor.split_data()
 
+	def tearDown(self):
+		self.groups = None
+		self.articles = None
+
 	
 
 	@unittest.skip
