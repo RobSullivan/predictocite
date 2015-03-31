@@ -44,4 +44,8 @@ class TestBuildClassifier(unittest.TestCase):
 		build_clf = BuildClassifier(self.steps)
 		
 		self.assertIsInstance(build_clf.pipeline, Pipeline)
+
+	def test_build_classifier_has_evaluate_cross_validation_method(self):
+
+		self.assertTrue(hasattr(build_clf, 'evaluate_cross_validation'))
 	
