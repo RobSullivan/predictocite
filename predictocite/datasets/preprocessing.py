@@ -55,10 +55,7 @@ class TextPreprocessor:
 		return sparse_matrix.todense()
 		
 
-	def tfidf_fit_transform(self, freq_term_matrix):
-				
-		tfidf = self.tf_transformer.fit(freq_term_matrix)#fit_transform creates a vocbulary index
-		return tfidf
+	
 		
 
 	def save_pickle(self, groups, tf_idf_matrix):

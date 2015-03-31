@@ -74,7 +74,7 @@ class TestPreprocessingOfData(unittest.TestCase):
 		
 		term_freq_matrix = preprocessor.frequency_term_matrix(split_data['train'])
 		
-		tfidf = preprocessor.tfidf_fit_transform(term_freq_matrix)# is a helper method for tfidf_transformer.fit_transform()
+		tfidf = preprocessor.tf_transformer.fit(term_freq_matrix)
 		self.assertEqual(tfidf.norm, 'l2')
 
 
@@ -84,8 +84,8 @@ class TestPreprocessingOfData(unittest.TestCase):
 		split_data = preprocessor.split_data()
 		term_freq_matrix = preprocessor.frequency_term_matrix(split_data['train'])
 
-		tfidf = preprocessor.tfidf_fit_transform(term_freq_matrix)#helper only fits
-		tfidf_matrix = preprocessor.tf_transformer.transform(term_freq_matrix)
-		preprocessor.save_pickle(self.groups, tfidf_matrix)
-		self.assertEqual(tfidf_matrix.idf_, 1)
+		
+		preprocessor.tf_transformer.fit(term_freq_matrix)
+		
+		self.assertTrue(preprocessor.tf_transformer, 'idf_')
 
