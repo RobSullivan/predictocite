@@ -18,7 +18,7 @@ class TestPreprocessingOfData(unittest.TestCase):
 
 	
 
-	@nottest
+	@unittest.skip
 	def test_write_tfidf_to_pickle(self):
 		"""
 		STILL TO IMPLEMENT
@@ -87,5 +87,5 @@ class TestPreprocessingOfData(unittest.TestCase):
 		tfidf = preprocessor.tfidf_fit_transform(term_freq_matrix)#helper only fits
 		tfidf_matrix = preprocessor.tf_transformer.transform(term_freq_matrix)
 		preprocessor.save_pickle(self.groups, tfidf_matrix)
-		self.assertEqual(sum(tfidf_matrix), 1)
+		self.assertEqual(tfidf_matrix.idf_, 1)
 

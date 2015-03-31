@@ -3,6 +3,7 @@
 Text preprocessing helper functions.
 
 """
+import pickle
 
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
