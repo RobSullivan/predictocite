@@ -63,4 +63,10 @@ class TestBuildClassifier(unittest.TestCase):
 		build_clf = BuildClassifier(self.steps, self.articles)
 		self.assertGreater(len(build_clf.articles['data']), 1000)#len = 1644
 
+	def test_evaluate_method_returns_array_of_scores(self):
+
+		build_clf = BuildClassifier(self.steps, self.articles)
+		scores = build_clf.evaluate_cross_validation()
+		self.assertTrue(hasattr(scores, 'shape'))
+
 	

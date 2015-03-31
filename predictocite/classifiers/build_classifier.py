@@ -21,7 +21,7 @@ Parameters
 steps: a list of tuples comprised of a vectorizer 'vect' and a classifier 'clf'
        For example the vectorizer TfidfVectorizer and the classifier MultinomialNB.
 
-articles: a bunch of article data
+articles: a type Bunch of article data
 """
 	def __init__(self, steps, articles=None):
 		self.steps = steps
