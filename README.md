@@ -51,3 +51,5 @@ In command prompt `python manage.py shell`
 python manage.py runserver
 
 navigate to localhost://5000
+
+Copyright Birkbeck College, University of London

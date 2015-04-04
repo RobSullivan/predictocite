@@ -1,8 +1,11 @@
 import unittest
 
+
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
+
 
 from predictocite.classifiers.build_classifier import BuildClassifier
 from predictocite.datasets.citation_groups import fetch_citationgroups
@@ -35,7 +38,7 @@ class TestBuildClassifier(unittest.TestCase):
 	"""
 	def setUp(self):
 		
-		self.vect = TfidfVectorizer()
+		self.vect = TfidfVectorizer(max_df=1, stop_words='english', ngram_range=(1, 2))
 		self.clf = MultinomialNB()
 		self.steps = [('vect', self.vect),
 		('clf', self.clf)]# list of tuples
@@ -71,5 +74,6 @@ class TestBuildClassifier(unittest.TestCase):
 		
 		scores = build_clf.evaluate_cross_validation()
 		self.assertTrue(hasattr(scores, 'shape'))
+		self.assertGreater(np.mean(scores), 0.75)
 
 	
