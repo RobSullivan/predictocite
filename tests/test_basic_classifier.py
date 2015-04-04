@@ -34,6 +34,7 @@ class TestBuildClassifier(unittest.TestCase):
 	clf - Classifier, the MultinomialNB class
 	"""
 	def setUp(self):
+		
 		self.vect = TfidfVectorizer()
 		self.clf = MultinomialNB()
 		self.steps = [('vect', self.vect),
@@ -65,7 +66,9 @@ class TestBuildClassifier(unittest.TestCase):
 
 	def test_evaluate_method_returns_array_of_scores(self):
 
+
 		build_clf = BuildClassifier(self.steps, self.articles)
+		
 		scores = build_clf.evaluate_cross_validation()
 		self.assertTrue(hasattr(scores, 'shape'))
 

@@ -1,6 +1,7 @@
 
 
 from sklearn.pipeline import Pipeline
+from sklearn.cross_validation import cross_val_score, KFold
 
 
 class BuildClassifier():
@@ -13,8 +14,8 @@ classifier
 
 evaluate and perform needs to use all the article data.
 
-Remember to check where the shuffling occurs and if the articles.target
-attribute is a problem not a numpy array
+Remember to check if the articles.target
+attribute is a problem not being a numpy array
 
 Parameters
 -------
@@ -29,7 +30,17 @@ articles: a type Bunch of article data
 		self.pipeline = Pipeline(steps)
 
 	def evaluate_cross_validation(self):
-		pass
+		"""
+
+		"""
+
+		clf = self.pipeline
+		X = self.articles.data
+		y = self.articles.target
+		K = 5
+		cv = KFold(len(y), K, shuffle=True, random_state=0)
+		scores = cross_val_score(clf, X, y, cv=K)
+		return scores
 
 
 
