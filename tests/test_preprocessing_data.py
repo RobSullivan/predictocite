@@ -96,3 +96,11 @@ class TestPreprocessingOfData(unittest.TestCase):
 		
 		self.assertTrue(hasattr(tf_idf_matrix.todense(), 'shape'))
 
+	def test_use_train_test_split_from_cv(self):
+		"""
+			I need to use this method of splitting and random shuffling of data
+			X_train, X_test, y_train, y_test = cross_validation.train_test_split(articles.data, articles.target, test_size=0.25, random_state=33)
+		"""
+		assertFail("IMPLEMENT this!")
+	
+

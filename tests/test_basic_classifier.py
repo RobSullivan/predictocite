@@ -76,4 +76,9 @@ class TestBuildClassifier(unittest.TestCase):
 		self.assertTrue(hasattr(scores, 'shape'))
 		self.assertGreater(np.mean(scores), 0.75)
 
+	def test_steps_to_predict(self):
+		"""
+		http://scikit-learn.sourceforge.net/stable/tutorial/text_analytics/working_with_text_data.html#extracting-features-from-text-files
+		"""
+
 	
