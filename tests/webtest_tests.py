@@ -20,6 +20,14 @@ class TestNavigateToIndex(PredictoCiteTestCase):
 
 	
 
-class TestUserCanSubmitData(PredictoCiteTestCase):
+class TestSubmittingData(PredictoCiteTestCase):
 
-	pass
+	def setUp(self):
+		super(TestSubmittingData, self).setUp()
+
+	def test_can_enter_title_into_form(self):
+
+		res = self.app.get('/')
+		form = res.forms['title_abstract_form'] #get form from its ID
+		assert_true(form)
+

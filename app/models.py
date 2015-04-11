@@ -18,3 +18,21 @@ class User(db.Model):
 	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 	def __repr__(self):
 		return '<User %r>' % self.username
+
+"""
+class NbClassifier(db.Model):
+	
+	This class loads clf.pickle as a clf property
+	clf property then has the clf API available
+	a view function can then use this class 
+	to submit user data to
+	
+	pass
+
+
+class TransformUserData(db.Model):
+
+	returns a frequency matrix from user data
+
+	pass
+"""

@@ -44,7 +44,11 @@ run tests
 
 ##Start application
 
-In command prompt `python manage.py shell` 
+In command prompt `python manage.py runserver`
+
+Navigate to localhost:5000
+
+What about db migrations? 
 
 >>>db.create_all()
 
