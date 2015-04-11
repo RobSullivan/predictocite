@@ -50,3 +50,4 @@ X_new_counts = count_vect.transform(user_doc)
 X_new_tfidf = tf_transformer.transform(X_new_counts)
 
 predicted = clf.predict(X_new_tfidf)
+
