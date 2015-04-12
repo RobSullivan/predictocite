@@ -17,6 +17,7 @@ class TestNavigateToIndex(PredictoCiteTestCase):
 		"""User gets index page"""
 		res = self.app.get('/')
 		assert_equal(res.status, '200 OK')
+		#assert_in('PredictoCite',res.body)
 
 	
 
@@ -28,8 +29,11 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 	def test_title_abstract_is_submitted_through_form(self):
 
 		res = self.app.get('/')
-		form = res.forms #get form from its ID
-		form.submit()
-		assert_true(form)
+		form = res.form #get form from its ID
+		form['title'] = 'An epigenome paper'
+		form['abstract'] = 'A super abstract'
+		res = form.submit()
+		res.maybe_follow() # redirect after submit form - 302 pattern
+		assert_equal(res.status_code, 200)
 		
 
