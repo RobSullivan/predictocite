@@ -10,16 +10,12 @@ def index():
 	form = TitleAbstractForm()
 	if form.validate_on_submit():
 		title = form.title.data
-		#if user is None:
-		#	user = User(username=form.name.data)
-		#	db.session.add(user)
-		#	db.session.commit()
-		#	session['known'] = False
-		#else:
-		#	session['known'] = True
+		abstract = form.abstract.data
+		
 		session['title'] = form.title.data
-		#form.name.data = ''
+		session['abstract'] = form.abstract.data
+		form.title.data = ''
 		return redirect(url_for('.index'))
 	return render_template('index.html',
-	 form=form, title=session.get('title'))
+	 form=form , title=session.get('title'), abstract=session.get('abstract'))
 

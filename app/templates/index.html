@@ -15,7 +15,7 @@
 </div>
 <!--{{ wtf.quick_form(form) }}-->
 
-<form class="form form-horizontal" method="post" role="form" name="help">
+<form class="form form-horizontal" method="post" role="form" name="title-abstract">
   {{ form.hidden_tag() }}
   {{ wtf.form_errors(form, hiddens="only") }}
 
@@ -24,8 +24,10 @@
   {{ wtf.form_field(form.submit)}}
 </form>
 
-<div class="container">
-	<p>{ title }</p>
+<div class="results-container">
+	<p>{% if title %}{{ title }} {% endif %}</p>
+	<p>{% if abstract %}{{ abstract }} {% endif %}</p>
+
 </div>
 
 {% endblock %}
