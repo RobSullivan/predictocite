@@ -34,6 +34,18 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 		form['abstract'] = 'A super abstract'
 		res = form.submit()
 		res.maybe_follow() # redirect after submit form - 302 pattern
-		assert_equal(res.status_code, 200)
+		assert_equal(res.status_code, 302)
+
+	def test_submitted_data_displayed_back(self):
+
+		res = self.app.get('/')
+		form = res.form #get form from its ID
+		form['title'] = 'An epigenome paper'
+		form['abstract'] = 'A super abstract'
+		res = form.submit()
+		res.follow() # redirect after submit form - 302 pattern
+		
+		assert_in('<p></p>',res.html)
+
 		
 

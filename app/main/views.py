@@ -9,17 +9,17 @@ def index():
 	
 	form = TitleAbstractForm()
 	if form.validate_on_submit():
-		user = User.query.filter_by(username=form.name.data).first()
-		if user is None:
-			user = User(username=form.name.data)
-			db.session.add(user)
-			db.session.commit()
-			session['known'] = False
-		else:
-			session['known'] = True
-		session['name'] = form.name.data
-		form.name.data = ''
+		title = form.title.data
+		#if user is None:
+		#	user = User(username=form.name.data)
+		#	db.session.add(user)
+		#	db.session.commit()
+		#	session['known'] = False
+		#else:
+		#	session['known'] = True
+		session['title'] = form.title.data
+		#form.name.data = ''
 		return redirect(url_for('.index'))
 	return render_template('index.html',
-	 form=form, name=session.get('name'),
-	 known = session.get('known', False))
+	 form=form, title=session.get('title'))
+

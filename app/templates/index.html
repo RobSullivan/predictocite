@@ -6,15 +6,26 @@
 
 {% block page_content%}
 <div class="page-header">
-	<h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}</h1>
-	{% if not known %}
-	<p>Pleased to meet you!</p>
-	{% else %}
-	<p>Happy to see you again!</p>
-	{% endif %}
+	<h1>Hello, welcome to PredictoCite</h1>
+	
+	<p>Please enter the title and abstract of your paper below to receive a prediciton of how many citations it will attract in the first two years of publication.</p>
+	
 
 
 </div>
-{{ wtf.quick_form(form) }}
+<!--{{ wtf.quick_form(form) }}-->
+
+<form class="form form-horizontal" method="post" role="form" name="help">
+  {{ form.hidden_tag() }}
+  {{ wtf.form_errors(form, hiddens="only") }}
+
+  {{ wtf.form_field(form.title) }}
+  {{ wtf.form_field(form.abstract) }}
+  {{ wtf.form_field(form.submit)}}
+</form>
+
+<div class="container">
+	<p>{ title }</p>
+</div>
 
 {% endblock %}
