@@ -20,6 +20,8 @@ class TestIndexView(PredictoCiteTestCase):
 	def test_index_has_title_and_abstract_form(self):
 		res = self.app.get('/')
 		form = res.form
-		
-		self.assertEqual(form.id, 'titleAbstractForm')
+		fields = form.fields
+		self.assertIn('title', fields)
+		self.assertIn('abstract', fields)
+		self.assertIn('submit', fields)
 

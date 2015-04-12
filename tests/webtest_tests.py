@@ -20,14 +20,16 @@ class TestNavigateToIndex(PredictoCiteTestCase):
 
 	
 
-class TestSubmittingData(PredictoCiteTestCase):
+class TestUserSubmittingData(PredictoCiteTestCase):
 
 	def setUp(self):
-		super(TestSubmittingData, self).setUp()
+		super(TestUserSubmittingData, self).setUp()
 
 	def test_title_abstract_is_submitted_through_form(self):
 
 		res = self.app.get('/')
-		form = res.forms['titleAbstractForm'] #get form from its ID
+		form = res.forms #get form from its ID
+		form.submit()
 		assert_true(form)
+		
 

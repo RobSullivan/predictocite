@@ -1,12 +1,13 @@
 from flask import render_template, session, redirect, url_for
 from . import main
-from .forms import NameForm
+from .forms import TitleAbstractForm
 from .. import db
 from ..models import User
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
-	form = NameForm()
+	
+	form = TitleAbstractForm()
 	if form.validate_on_submit():
 		user = User.query.filter_by(username=form.name.data).first()
 		if user is None:
