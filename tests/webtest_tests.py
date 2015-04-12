@@ -25,9 +25,9 @@ class TestSubmittingData(PredictoCiteTestCase):
 	def setUp(self):
 		super(TestSubmittingData, self).setUp()
 
-	def test_can_enter_title_into_form(self):
+	def test_title_abstract_is_submitted_through_form(self):
 
 		res = self.app.get('/')
-		form = res.forms['title_abstract_form'] #get form from its ID
+		form = res.forms['titleAbstractForm'] #get form from its ID
 		assert_true(form)
 
