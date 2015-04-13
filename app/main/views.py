@@ -19,3 +19,7 @@ def index():
 	return render_template('index.html',
 	 form=form , title=session.get('title'), abstract=session.get('abstract'))
 
+
+@main.route('/results')
+def results():
+	return render_template('results.html')
