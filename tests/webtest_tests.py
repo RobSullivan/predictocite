@@ -39,13 +39,26 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 	def test_submitted_data_displayed_back(self):
 
 		res = self.app.get('/')
-		form = res.form #get form from its ID
+		form = res.form 
 		form['title'] = 'An epigenome paper'
 		form['abstract'] = 'A super abstract'
 		res = form.submit()
 		res.follow() # redirect after submit form - 302 pattern
 		res = self.app.get('/')
 		p_text = res.html.find_all(text="An epigenome paper")
+		assert_equal('An epigenome paper',p_text.pop())
+
+	def test_user_data_displayed_on_result_page(self):
+
+		res = self.app.get('/')
+		form = res.form 
+		form['title'] = 'An epigenome paper'
+		form['abstract'] = 'A super abstract'
+		res = form.submit()
+		res.follow() # redirect after submit form - 302 pattern
+		res = self.app.get('/result')
+		p_text = res.html.find_all(text="An epigenome paper")
+		assert_equal(res.status_code, 200)
 		assert_equal('An epigenome paper',p_text.pop())
 
 		
