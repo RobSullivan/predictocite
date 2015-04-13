@@ -45,7 +45,8 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 		res = form.submit()
 		res.follow() # redirect after submit form - 302 pattern
 		res = self.app.get('/')
-		assert_in('<p>An epigenome paper</p>',res.html.p)
+		p_text = res.html.find_all(text="An epigenome paper")
+		assert_equal('An epigenome paper',p_text.pop())
 
 		
 
