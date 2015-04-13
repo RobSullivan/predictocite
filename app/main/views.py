@@ -8,6 +8,7 @@ from ..models import User
 def index():
 	
 	form = TitleAbstractForm()
+	
 	if form.validate_on_submit():
 		title = form.title.data
 		abstract = form.abstract.data
@@ -15,11 +16,12 @@ def index():
 		session['title'] = form.title.data
 		session['abstract'] = form.abstract.data
 		form.title.data = ''
-		return redirect(url_for('.index'))
+		return redirect(url_for('.result'))
 	return render_template('index.html',
-	 form=form , title=session.get('title'), abstract=session.get('abstract'))
+	 form=form)
 
 
-@main.route('/results')
-def results():
-	return render_template('results.html')
+@main.route('/result')
+def result():
+	return render_template('result.html', 
+		title=session.get('title'), abstract=session.get('abstract'))

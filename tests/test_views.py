@@ -25,8 +25,14 @@ class TestIndexView(PredictoCiteTestCase):
 		self.assertIn('abstract', fields)
 		self.assertIn('submit', fields)
 
-	def test_results_page_exists(self):
-		res = self.app.get('/results')
+	def test_result_page_exists(self):
+		res = self.app.get('/result')
 		self.assertEqual(res.status_code, 200)
-		
+
+	def test_result_page_html(self):
+		res = self.app.get('/result')
+		p = res.html.find_all('p')
+		self.assertEqual(len(p), 2)
+
+			
 

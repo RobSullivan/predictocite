@@ -43,10 +43,10 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 		form['title'] = 'An epigenome paper'
 		form['abstract'] = 'A super abstract'
 		res = form.submit()
-		res.follow() # redirect after submit form - 302 pattern
+		res.maybe_follow() # redirect after submit form - 302 pattern
 		res = self.app.get('/')
 		p_text = res.html.find_all(text="An epigenome paper")
-		assert_equal('An epigenome paper',p_text.pop())
+		assert_not_equal('An epigenome paper', p_text)
 
 	def test_user_data_displayed_on_result_page(self):
 
@@ -55,7 +55,7 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 		form['title'] = 'An epigenome paper'
 		form['abstract'] = 'A super abstract'
 		res = form.submit()
-		res.follow() # redirect after submit form - 302 pattern
+		res.maybe_follow() # redirect after submit form - 302 pattern
 		res = self.app.get('/result')
 		p_text = res.html.find_all(text="An epigenome paper")
 		assert_equal(res.status_code, 200)
