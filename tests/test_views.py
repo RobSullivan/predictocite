@@ -24,5 +24,5 @@ class TestIndexView(PredictoCiteTestCase):
 		self.assertIn('title', fields)
 		self.assertIn('abstract', fields)
 		self.assertIn('submit', fields)
-		#self.assertIn('name', fields)
+		
 

@@ -51,3 +51,10 @@ X_new_tfidf = tf_transformer.transform(X_new_counts)
 
 predicted = clf.predict(X_new_tfidf)
 
+#STEP 5: save classifier to a pickle
+
+file_name = 'nb_classifier.pickle'
+
+with open(file_name, 'wb') as f:
+	pickle.dump(clf, f, pickle.HIGHEST_PROTOCOL)
+
