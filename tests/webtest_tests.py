@@ -61,5 +61,18 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 		assert_equal(res.status_code, 200)
 		assert_equal('An epigenome paper',p_text.pop())
 
+	def test_user_gets_a_prediction(self):
+
+		res = self.app.get('/')
+		res.form['title'] = ''
+		res.form['abstract'] = ''
+		res.form.submit()
+		res.maybe_follow()
+		res = self.app.get('/result')
+		p_text = res.html.find_all(text="one_to_ten_citations")
+		assert_equal(res.status_code, 200)
+		assert_equal('one_to_ten_citations', p_text)
+
+
 		
 
