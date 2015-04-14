@@ -74,5 +74,9 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 		assert_equal('one_to_ten_citations', p_text)
 
 
+class TestUserSavesResult(PredictoCiteTestCase):
+	pass
+
+
 		
 
