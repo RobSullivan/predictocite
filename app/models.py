@@ -1,4 +1,5 @@
 import pickle
+import sys
 
 from . import db
 
@@ -25,12 +26,25 @@ class User(db.Model):
 class NbClf():
 	"""NbClf loads and wraps clf.pickle"""
 	def __init__(self):
-		with open('clf.pickle', 'rb') as f:
-			self.clf = pickle.load(f)
+		try:
+			with open('clf.pickle', 'rb') as f:
+				self.clf = pickle.load(f)
+		except IOError as err:
+			print("IO Error: {0}".format(err))
 
 
 class UserDataTransform():
 	"""loads and wraps count_vect and tf_transform
 	that generated clf.pickle. Use them to transform 
 	user's title and abstract into a frequency matrix"""
-	pass
+	def __init__(self):
+		try:
+			with open('count_vect.pickle', 'rb') as f:
+				self.count_vect = pickle.load(f)
+		except IOError as err:
+			print("IO Error: {0}".format(err))
+		try:
+			with open('tf_transformer.pickle', 'rb') as g:
+				self.tf_transformer = pickle.load(g)
+		except IOError as err:
+			print("IO Error: {0}".format(err))

@@ -33,4 +33,8 @@ class TestUserDataTransformModel(PredictoCiteTestCase):
 	def test_tfidf_model_exists(self):
 		self.assertTrue(self.udTransform)
 
+	def test_expose_count_vect_and_tf(self):
+		self.assertTrue(self.udTransform.count_vect)
+		self.assertTrue(self.udTransform.tf_transformer)
+
 
