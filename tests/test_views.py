@@ -1,7 +1,6 @@
 
 import unittest
-import inspect
-from inspect import signature
+
 
 
 from nose.tools import *
@@ -34,5 +33,5 @@ class TestIndexView(PredictoCiteTestCase):
 		p = res.html.find_all('p')
 		self.assertEqual(len(p), 2)
 
-			
+
 

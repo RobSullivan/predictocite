@@ -1,3 +1,5 @@
+import pickle
+
 from . import db
 
 
@@ -18,6 +20,17 @@ class User(db.Model):
 	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 	def __repr__(self):
 		return '<User %r>' % self.username
+
+
+class NbClf():
+	"""NbClf loads and wraps clf.pickle"""
+	def __init__(self):
+		with open('clf.pickle', 'rb') as f:
+			self.clf = pickle.load(f)
+
+
+class UserDataTransform():
+	pass
 
 """
 class NbClassifier(db.Model):
