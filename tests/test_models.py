@@ -4,7 +4,7 @@ from unittest import mock
 from nose.tools import *
 
 from tests.base import PredictoCiteTestCase
-from app.models import NbClf
+from app.models import NbClf, UserDataTransform
 class TestClassiferModel(PredictoCiteTestCase):
 
 	def setUp(self):

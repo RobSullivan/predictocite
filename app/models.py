@@ -30,22 +30,7 @@ class NbClf():
 
 
 class UserDataTransform():
+	"""loads and wraps count_vect and tf_transform
+	that generated clf.pickle. Use them to transform 
+	user's title and abstract into a frequency matrix"""
 	pass
-
-"""
-class NbClassifier(db.Model):
-	
-	This class loads clf.pickle as a clf property
-	clf property then has the clf API available
-	a view function can then use this class 
-	to submit user data to
-	
-	pass
-
-
-class TransformUserData(db.Model):
-
-	returns a frequency matrix from user data
-
-	pass
-"""
