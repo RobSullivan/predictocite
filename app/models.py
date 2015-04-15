@@ -27,7 +27,7 @@ class NbClf():
 	"""NbClf loads and wraps clf.pickle"""
 	def __init__(self):
 		try:
-			with open('clf.pickle', 'rb') as f:
+			with open('nb_classifier.pickle', 'rb') as f:
 				self.clf = pickle.load(f)
 		except IOError as err:
 			print("IO Error: {0}".format(err))
