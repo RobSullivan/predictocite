@@ -40,6 +40,7 @@ file_name = 'nb_classifier.pickle'
 with open(file_name, 'wb') as f:
 	pickle.dump(clf, f, pickle.HIGHEST_PROTOCOL)
 
+#################end paste#################
 #STEP 4: predict new doc
 user_doc = [X_test[0]] # new doc for classifying needs to be in a list
 
