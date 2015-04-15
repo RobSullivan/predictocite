@@ -23,7 +23,7 @@ def index():
 		user_data_bag_of_words = data_transform.count_vect.transform(user_data)
 		frequency_matrix = data_transform.tf_transformer.transform(user_data_bag_of_words)
 		prediction = nb_clf.clf.predict(frequency_matrix)
-		session['prediction'] = prediction
+		session['prediction'] = str(prediction)
 		
 
 		form.title.data = ''
