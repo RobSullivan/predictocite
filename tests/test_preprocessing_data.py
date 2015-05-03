@@ -11,7 +11,7 @@ class TestPreprocessingOfData(unittest.TestCase):
 	TestPreprocessingOfData tests turning text into numbers
 	"""
 	def setUp(self):
-		self.groups = ['one_to_ten_citations']
+		self.groups = ['one_to_five_citations']
 		self.articles = fetch_citationgroups(self.groups)
 		preprocessor = TextPreprocessor(self.articles)
 		split_data = preprocessor.split_data()
@@ -44,18 +44,7 @@ class TestPreprocessingOfData(unittest.TestCase):
 		self.assertTrue(hasattr(x_train_counts, 'shape'))
 
 
-	def test_split_data_for_training_and_testing(self):
-		"""
-		training_data will be 75 percent len of data
-		test_data will be 25 percent len of data
-		len of groups is 965
-		"""
-
-		preprocessor = TextPreprocessor(self.articles)
-		split_data = preprocessor.split_data()
-		self.assertEqual(len(split_data['train']), 723)
-		self.assertEqual(len(split_data['test']), 242)
-
+	
 	def test_create_frequency_term_matrix(self):
 		"""
 		Once have vocab indexed create frequency_term matrix 

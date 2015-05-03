@@ -34,11 +34,30 @@ X_train_tfidf = tf_transformer.fit_transform(X_train_counts)
 #STEP 3: train a classifer 
 
 clf = MultinomialNB().fit(X_train_tfidf, y_train)
-#save clf to pickle
+#save models and tests data to pickles to be loaded in by app at runtime
+
 file_name = 'nb_classifier.pickle'
+X_test_filename = 'X_test.pickle'
+y_test_filename = 'y_test.pickle'
+count_vect_filename = 'count_vect.pickle'
+tf_transformer_filename = 'tf_transformer.pickle'
 
 with open(file_name, 'wb') as f:
 	pickle.dump(clf, f, pickle.HIGHEST_PROTOCOL)
+
+with open(X_test_filename, 'wb') as g:
+	pickle.dump(X_test, g, pickle.HIGHEST_PROTOCOL)
+
+with open(y_test_filename, 'wb') as h:
+	pickle.dump(y_test, h, pickle.HIGHEST_PROTOCOL)
+
+with open(count_vect_filename, 'wb') as i:
+	pickle.dump(count_vect, i, pickle.HIGHEST_PROTOCOL)
+
+with open(tf_transformer_filename, 'wb') as j:
+	pickle.dump(tf_transformer, j, pickle.HIGHEST_PROTOCOL)
+
+
 
 #################end paste#################
 #STEP 4: predict new doc
