@@ -31,7 +31,7 @@ class TestIndexView(PredictoCiteTestCase):
 	def test_result_page_html(self):
 		res = self.app.get('/result')
 		p = res.html.find_all('p')
-		self.assertEqual(len(p), 2)
+		self.assertEqual(len(p), 3)
 
 
 
