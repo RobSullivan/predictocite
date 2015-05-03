@@ -71,7 +71,7 @@ class TestUserSubmittingData(PredictoCiteTestCase):
 		res = self.app.get('/result')
 		p_text = res.html.find_all('p')
 		assert_equal(res.status_code, 200)
-		assert_equal("['one_to_ten_citations']", p_text.pop().text)
+		assert_equal("['one_to_five_citations']", p_text.pop().text)
 
 
 class TestUserSavesResult(PredictoCiteTestCase):
