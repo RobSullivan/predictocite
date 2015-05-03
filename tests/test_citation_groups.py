@@ -8,11 +8,11 @@ class TestCitationDataAttributes(unittest.TestCase):
 	processing"""
 	
 	def setUp(self):
-		groups = ['one_to_ten_citations', 'eleven_to_twenty_citations']
+		groups = ['zero_citations', 'one_to_five_citations']
 		self.articles = fetch_citationgroups(groups)
 
 	def test_fetch_citationgroups(self):
-		citation_group = 'one_to_ten_citations'
+		citation_group = 'one_to_five_citations'
 		self.assertTrue(citation_group in self.articles.target_names)
 		self.assertTrue(citation_group in self.articles.target)
 		self.assertEqual(len(self.articles.data), len(self.articles.target))

@@ -1,4 +1,4 @@
-"""Loader for the citation groups from mongodb test database
+"""Loader for the citation groups from mongodb pcite database
 
 modelled on https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/datasets/twenty_newsgroups.py#L151
 
@@ -24,18 +24,25 @@ from pymongo import MongoClient
 from .base import Bunch
 
 VALIDATE_CITATION_GROUPS = set([
-        "hundred_one_plus_citations",
-        "thirty_one_to_forty_citations",
-        "seventy_one_to_eighty_citations",
-        "one_to_ten_citations",
-        "eighty_one_to_ninety_citations",
         "zero_citations",
-        "twenty_one_to_thirty_citations",
-        "eleven_to_twenty_citations",
-        "forty_one_to_fifty_citations",
-        "fifty_one_to_sixty_citations",
-        "sixty_one_to_seventy_citations",
-        "ninety_one_to_hundred_citations"
+        "one_to_five_citations",
+        "six_to_ten_citations",
+        "eleven_to_fifteen_citations",
+        "sixteen_to_twenty_citations",
+        "twenty_one_to_twenty_five_citations",
+        "twenty_six_to_thirty_citations",
+        "thirty_one_to_thirty_five_citations"
+        "thirty_six_to_forty_citations",
+        "forty_one_to_forty_five_citations",
+        "forty_six_to_fifty_citaions",
+        "fifty_one_to_fifty_five_citations",
+        "fifty_six_to_sixty_citations",
+        "sixty_one_to_sixty_five_citations",
+        "sixty_six_to_seventy_citations",
+        "seventy_one_to_seventy_six_citations",
+        "seventy_six_to_eighty_citations",
+        "eighty_one_to_eighty_five_citations",
+        "eighty_six_to_ninety_citations",
 ])
 
 #create MongoClient
@@ -43,7 +50,7 @@ try:
 
     client = MongoClient('localhost', 27017)
 
-    db = client.test
+    db = client.pcite
 
     articles = db['articlemodels']
 
