@@ -95,13 +95,13 @@ def fetch_citationgroups(citation_groups=None):
 	    else:
 	    	results = articles.find(
 		    {"citation_group":
-		    {'$in':citation_groups}},{"title":1, "abstract":1, "citation_group":1, "citation_count_at_two":1})
+		    {'$in':citation_groups}},{"title":1, "abstract":1, "citation_group":1, "citation_count_at_two":1, "pmid":1})
 
 	elif citation_groups is None: # get all groups
 
 		results = articles.find({
 			"citation_group": {"$exists": "true"}},
-			{"title": 1, "abstract":1, "citation_group":1, "citation_count_at_two":1})
+			{"title": 1, "abstract":1, "citation_group":1, "citation_count_at_two":1, "pmid":1})
 
 
 	"""
@@ -125,6 +125,7 @@ def fetch_citationgroups(citation_groups=None):
 	data.citation_count = [x.pop('citation_count_at_two') for x in data.data]
 	data.description = 'the citation_groups'
 	data.target_names = results.distinct('citation_group') #using results cursor in event of citation_group=None
+	data.pmid = [x.pop('pmid') for x in data.data]
 	
 	"""
 	data.data should be an iterable which yields either str, unicode or file objects so...ugh...
