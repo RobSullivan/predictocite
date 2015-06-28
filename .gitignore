@@ -52,3 +52,21 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# virtualenv folders
+Lib/
+Include/
+Scripts/
+desktop.ini
+pybrain/
+statsmodels-*
+ggplot*
+numpy.exe
+
+# documentation folders perhaps?
+man/
+share/
+
+# sqlite dbs. don't track for now
+data-dev.sqlite
+data-test.sqlite
