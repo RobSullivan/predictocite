@@ -27,8 +27,9 @@ dropped_columns = ['link', 'sub_group', 'references',
 df.drop(dropped_columns, axis=1, inplace=True)
 #figure_1.png
 gg = ggplot(aes(x='citation_count_at_two'), data=df)
-gg + geom_histogram() + ggtitle("Figure 1: Histogram of number of citations at two years after publication") 
-	+ labs("Number of citations", "Frequency")
+gg + geom_histogram() + \
+ggtitle("Figure 1: Histogram of number of citations at two years after publication") + \
+labs("Number of citations", "Frequency")
 
 # as fig one can't tell us much the data can can be limited
 # to save on memory query the db again
