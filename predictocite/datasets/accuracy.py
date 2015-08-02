@@ -4,7 +4,7 @@ import pickle
 from predictocite.datasets.citation_groups import fetch_citationgroups
 
 import numpy as np
-from sklearn import cross_validation
+from sklearn import cross_validation, metrics
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 
@@ -52,3 +52,28 @@ predicted = clf.predict(articles_test)
 
 # What's np.mean doing
 np.mean(predicted == y_test)
+
+######Classification report################
+
+
+print(metrics.classification_report(y_test, predicted, target_names=y_t
+est))
+
+#######Confusion matrix#################
+
+metrics.confusion_matrix(y_test, predicted)
+
+
+######Grid search
+"""
+Can't get this working http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html#parameter-tuning-using-grid-search
+
+
+"""
+
+####Cross-Validation
+
+"""
+Can't get this working http://scikit-learn.org/stable/modules/cross_validation.html#computing-cross-validated-metrics
+
+"""
