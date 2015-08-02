@@ -57,3 +57,8 @@ python manage.py runserver
 navigate to localhost://5000
 
 Copyright Birkbeck College, University of London
+
+
+##Build documentation
+If needed, run `sphinx-build -b html source build` to generate html documentation.
+Can be viewed at ...
