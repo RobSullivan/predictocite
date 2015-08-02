@@ -14,6 +14,7 @@ Contents:
    installation
    getting_started
    prediction
+   tests
 
 
 
@@ -23,4 +24,10 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+.. py:function:: enumerate(sequence[, start=0])
+
+   Return an iterator that yields tuples of an index and an item of the
+   *sequence*. (And so on.)
 
