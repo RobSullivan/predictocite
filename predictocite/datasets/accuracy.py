@@ -1,6 +1,3 @@
-import pickle
-
-
 from predictocite.datasets.citation_groups import fetch_citationgroups
 
 import numpy as np
@@ -18,6 +15,7 @@ X_train, X_test, y_train, y_test = cross_validation.train_test_split(
 	articles.data, articles.target, test_size=0.25, random_state=25)
 
 #STEP 2: Extract features from text
+# tweak params here to see if they return better results.
 
 count_vect = CountVectorizer(max_df=1, stop_words='english', ngram_range=(1, 2))
 
@@ -56,8 +54,7 @@ np.mean(predicted == y_test)
 ######Classification report################
 
 
-print(metrics.classification_report(y_test, predicted, target_names=y_t
-est))
+print(metrics.classification_report(y_test, predicted, target_names=y_test))
 
 #######Confusion matrix#################
 
