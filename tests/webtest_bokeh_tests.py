@@ -17,7 +17,7 @@ from nose.tools import *
 from tests.base import PredictoCiteTestCase
 
 
-class TestActivateViz(PredictoCiteTestCase):
+class TestDisplayAccuracy(PredictoCiteTestCase):
 
 	def setUp(self):
 		super(TestActivateViz, self).setUp()

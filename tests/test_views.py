@@ -28,10 +28,18 @@ class TestIndexView(PredictoCiteTestCase):
 		res = self.app.get('/result')
 		self.assertEqual(res.status_code, 200)
 
-	def test_result_page_html(self):
+
+
+
+class TestResultView(PredictoCiteTestCase):
+
+	def setUp(self):
+		super(TestResultView, self).setUp()
+
+	def test_result_template_has_space_for_accuracy_score(self):
 		res = self.app.get('/result')
 		p = res.html.find_all('p')
-		self.assertEqual(len(p), 3)
+		self.assertEqual(len(p), 4)
 
 
 
