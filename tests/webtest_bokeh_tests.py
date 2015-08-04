@@ -20,7 +20,7 @@ from tests.base import PredictoCiteTestCase
 class TestDisplayAccuracy(PredictoCiteTestCase):
 
 	def setUp(self):
-		super(TestActivateViz, self).setUp()
+		super(TestDisplayAccuracy, self).setUp()
 
 
 	def test_user_sees_accuracy_of_prediction(self):
@@ -32,4 +32,4 @@ class TestDisplayAccuracy(PredictoCiteTestCase):
 		res = self.app.get('/result')
 		p_text = res.html.find_all('p')
 		assert_equal(res.status_code, 200)
-		assert_equal("45 percent accurate", p_text[2].text)
+		assert_equal("This classification was predicted with 45 percent accuracy", p_text[3].text)
