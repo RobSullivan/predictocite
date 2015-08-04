@@ -38,3 +38,13 @@ class TestUserDataTransformModel(PredictoCiteTestCase):
 		self.assertTrue(self.udTransform.tf_transformer)
 
 
+class TestY_TestDataIsAvailable(PredictoCiteTestCase):
+
+	def setUp(self):
+		super(TestY_TestDataIsAvailable, self).setUp()
+		self.y_test = YTestData()
+
+	def test_y_test_data_is_available(self):
+		self.assertTrue(self.y_test)
+
+

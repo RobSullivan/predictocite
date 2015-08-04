@@ -32,4 +32,4 @@ class TestDisplayAccuracy(PredictoCiteTestCase):
 		res = self.app.get('/result')
 		p_text = res.html.find_all('p')
 		assert_equal(res.status_code, 200)
-		assert_equal("This classification was predicted with 45 percent accuracy", p_text[3].text)
+		assert_equal("This classification was predicted with 45 percent accuracy", p_text[3].text)# 45 percent is abitrary for now.
