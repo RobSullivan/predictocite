@@ -59,4 +59,6 @@ class YTestData(object):
 	   so the object becomes the depickled pickle 
 	   and is available to use straight away.
 	"""
-	pass
+	def __init__(self):
+		with open('y_test.pickle', 'rb') as f:
+			self.data = pickle.load(f)

@@ -49,6 +49,6 @@ class TestY_TestDataIsAvailable(PredictoCiteTestCase):
 		self.assertTrue(self.y_test)
 
 	def test_y_test_has_commensurate_features(self):
-		self.assertEqual(len(self.y_test), 411)
+		self.assertEqual(len(self.y_test.data), 411)
 
 
