@@ -13,9 +13,13 @@ This uses TfidfVectorizer instead of CountVectorizer and TfidfTransformer
 
 """
 
+import json
+
 from predictocite.datasets.citation_groups import fetch_citationgroups
 
+
 import numpy as np
+import pandas as pd
 from sklearn import cross_validation, metrics
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectKBest, chi2
@@ -55,6 +59,8 @@ user_doc = [X_test[1]]
 
 user_tfidf = tfidf_vect.transform(user_doc)
 
+user_doc_predict = clf.predict(user_tfidf)
+
 #How do I get from user_tfidf matrix to look up features?
 # followed this tutorial http://scikit-learn.org/stable/auto_examples/text/document_classification_20newsgroups.html#example-text-document-classification-20newsgroups-py
 # uses SelectKBest univariate feature
@@ -81,3 +87,75 @@ ariation population']
 np.asarray(feature_names)
 
 
+"""
+I need to show why a user_doc has been classified in a particular class.
+
+"""
+
+"""
+plotting the confusion matrix
+
+run ipython with --pylab option
+
+Cant plot for one document because user_doc_predict array is dim 1
+
+Show the user the confusion matrix for the test dataset. How does that help
+
+How to deliver the image? load it as an image file
+
+"""
+
+articles_test = tfidf_vect.transform(X_test)
+
+predicted = clf.predict(articles_test)
+
+cm = metrics.confusion_matrix(y_test, predicted)
+
+def plot_confusion_matrix(cm, title='Confusion matrix', cmap=plt.cm.Blues):
+	plt.imshow(cm, interpolation='nearest', cmap=cmap)
+	plt.title(title)
+	plt.colorbar()
+	tick_marks = np.arange(len(articles.target_names))
+	plt.xticks(tick_marks, articles.target_names, rotation=90)
+	plt.yticks(tick_marks, articles.target_names)
+	plt.tight_layout()
+	plt.ylabel('True label')
+	plt.xlabel('Predicted label')
+
+
+plot_confusion_matrix(cm)
+
+
+"""
+cm as json
+
+"""
+
+with open('confusion_matrix.json', 'w') as f:
+	json.dump(cm.tolist(), f)
+
+
+"""
+ggplot attempt
+"""
+
+data = pd.DataFrame(data=cm, columns=articles.target_names, fill=np.arange(len(articles.target_names)))
+
+ggplot(data, aes(x=articles.target_names, y=articles.target_names)) +\
+	scale_color_gradient(low='blue', mid='white', high='red') +\
+	geom_tile(aes(fill='#333333'))
+
+#KeyError: 'fill' - known bug - fix has not fixed it by the look of it.
+
+
+"""
+Bokeh attempt
+
+"""
+from bokeh.charts import HeatMap, output_file, show
+
+output_file('heatmap.html')
+
+p = HeatMap(cm, title='Confusion Matrix')
+
+show(p)
