@@ -51,4 +51,12 @@ class UserDataTransform():
 
 
 class YTestData(object):
+	"""YTestData loads y_test pickle
+	   This is needed for accuracy score and 
+	   confusion matrix.
+
+	   Current way to load is to do it on __init__
+	   so the object becomes the depickled pickle 
+	   and is available to use straight away.
+	"""
 	pass

@@ -5,6 +5,7 @@ from nose.tools import *
 
 from tests.base import PredictoCiteTestCase
 from app.models import NbClf, UserDataTransform, YTestData
+
 class TestClassiferModel(PredictoCiteTestCase):
 
 	def setUp(self):
@@ -46,5 +47,8 @@ class TestY_TestDataIsAvailable(PredictoCiteTestCase):
 
 	def test_y_test_data_is_available(self):
 		self.assertTrue(self.y_test)
+
+	def test_y_test_has_commensurate_features(self):
+		self.assertEqual(len(self.y_test), 411)
 
 
