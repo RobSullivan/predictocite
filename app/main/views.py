@@ -43,15 +43,17 @@ def result():
 	y_test = YTestData()
 	y_test_data = y_test.data
 
-	nb_clf = session.get('nb_clf')
+	nb_clf = NbClf()
 
-	#predicted = nb_clf.clf.predict(y_test_data)
+	#print(type(nb_clf))
 
-	#accuracy  = np.mean(predicted == y_test_data)
+	predicted = nb_clf.clf.predict(y_test_data)
+
+	accuracy  = str(np.mean(predicted == y_test_data))
 
 
 
 	return render_template('result.html', 
 		title=session.get('title'), user_data=session.get('user_data'), 
 		abstract=session.get('abstract'), prediction=session.get('prediction'),
-		accuracy=nb_clf)
+		accuracy=accuracy)

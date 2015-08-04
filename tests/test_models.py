@@ -51,4 +51,13 @@ class TestY_TestDataIsAvailable(PredictoCiteTestCase):
 	def test_y_test_has_commensurate_features(self):
 		self.assertEqual(len(self.y_test.data), 411)
 
+class TestX_TestDataIsAvailable(PredictoCiteTestCase):
+
+	def setUp(self):
+		super(TestX_TestDataIsAvailable, self).setUp()
+		self.x_test = XTestData()
+
+	def test_x_test_data_is_available(self):
+		self.assertTrue(self.x_test)
+
 
