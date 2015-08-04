@@ -149,7 +149,11 @@ ggplot(data, aes(x=articles.target_names, y=articles.target_names)) +\
 
 
 """
-Bokeh attempt
+Bokeh attempt - works the best so far as outputs html.
+
+Get some colour mapping on this.
+
+Figure out how to call and render this from results page.
 
 """
 from bokeh.charts import HeatMap, output_file, show
