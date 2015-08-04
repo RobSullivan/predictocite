@@ -34,6 +34,9 @@ def index():
 
 @main.route('/result', methods=['GET'])
 def result():
+
+
 	return render_template('result.html', 
 		title=session.get('title'), user_data=session.get('user_data'), 
-		abstract=session.get('abstract'), prediction=session.get('prediction'))
+		abstract=session.get('abstract'), prediction=session.get('prediction'),
+		accuracy=45)
