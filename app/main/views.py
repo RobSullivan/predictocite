@@ -45,13 +45,13 @@ def result():
 
 	nb_clf = session.get('nb_clf')
 
-	predicted = nb_clf.clf.predict(y_test_data)
+	#predicted = nb_clf.clf.predict(y_test_data)
 
-	accuracy  = np.mean(predicted == y_test_data)
+	#accuracy  = np.mean(predicted == y_test_data)
 
 
 
 	return render_template('result.html', 
 		title=session.get('title'), user_data=session.get('user_data'), 
 		abstract=session.get('abstract'), prediction=session.get('prediction'),
-		accuracy=accuracy)
+		accuracy=nb_clf)
