@@ -41,8 +41,10 @@ class TestResultView(PredictoCiteTestCase):
 		p = res.html.find_all('p')
 		self.assertEqual(len(p), 4)
 
-	def test_accuracy_data_appears(self):
-		pass
+	def test_result_view_calculates_accuracy(self):
+		res = self.app.get('/result')
+		self.assertEqual(res.status_code, 200)
+
 
 
 
