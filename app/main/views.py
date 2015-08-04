@@ -2,7 +2,7 @@ from flask import render_template, session, redirect, url_for
 from . import main
 from .forms import TitleAbstractForm
 from .. import db
-from ..models import User, NbClf, UserDataTransform, YTestData
+from ..models import User, NbClf, UserDataTransform, YTestData, XTestData
 
 import numpy as np
 
@@ -18,7 +18,11 @@ def index():
 		title = form.title.data
 		abstract = form.abstract.data
 		
-		session['nb_clf'] = nb_clf
+		# add classifier and vectorizers to session so result route can 
+		# pick them up
+
+		#session['nb_clf'] = nb_clf
+		#session['data_transform'] = data_transform
 
 		session['title'] = form.title.data
 		session['abstract'] = form.abstract.data
@@ -41,15 +45,26 @@ def index():
 def result():
 
 	y_test = YTestData()
+	x_test = XTestData()
+
 	y_test_data = y_test.data
+	x_test_data = x_test.data
 
+	# if going via index first could use session.get('nb_clf')
+	# but looks like might have to violate DRY when hitting result directly
+	# this needs refactoring at some point
 	nb_clf = NbClf()
+	data_transform = UserDataTransform()
 
-	#print(type(nb_clf))
+	#count_vect x_test_data
+	articles_test = data_transform.count_vect.transform(x_test_data)
 
-	predicted = nb_clf.clf.predict(y_test_data)
+	#this is tfidf...
+	articles_test = data_transform.tf_transformer.transform(articles_test)
 
-	accuracy  = str(np.mean(predicted == y_test_data))
+	predicted = nb_clf.clf.predict(articles_test)
+
+	accuracy  = round(np.mean(predicted == y_test_data)*100, 2)
 
 
 
