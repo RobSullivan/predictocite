@@ -48,3 +48,7 @@ class UserDataTransform():
 				self.tf_transformer = pickle.load(g)
 		except IOError as err:
 			print("IO Error: {0}".format(err))
+
+
+class YTestData(object):
+	pass
