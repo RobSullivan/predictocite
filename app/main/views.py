@@ -1,4 +1,4 @@
-from flask import render_template, session, redirect, url_for
+from flask import render_template, session, redirect, url_for, Markup
 from . import main
 from .forms import TitleAbstractForm
 from .. import db
@@ -66,9 +66,10 @@ def result():
 
 	accuracy  = round(np.mean(predicted == y_test_data)*100, 2)
 
+	div = Markup('<div class="plotdiv"></div>')
 
 
 	return render_template('result.html', 
 		title=session.get('title'), user_data=session.get('user_data'), 
 		abstract=session.get('abstract'), prediction=session.get('prediction'),
-		accuracy=accuracy)
+		accuracy=accuracy, div=div)
