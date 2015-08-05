@@ -3,8 +3,10 @@ import sys
 
 from . import db
 
-from bokeh.plotting import figure
+from bokeh.charts import HeatMap
 from bokeh.embed import components
+from bokeh.plotting import figure
+
 
 class Role(db.Model):
 	__tablename__ = 'roles'
@@ -85,3 +87,4 @@ class BokehModel(object):
 	def __init__(self):
 		self.plot = figure()
 		self.components = components
+		self.heat_map = HeatMap

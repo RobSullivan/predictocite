@@ -5,6 +5,7 @@ from .. import db
 from ..models import User, NbClf, UserDataTransform, YTestData, XTestData, BokehModel
 
 import numpy as np
+from sklearn import metrics
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -66,8 +67,12 @@ def result():
 
 	accuracy  = round(np.mean(predicted == y_test_data)*100, 2)
 
+	cm = metrics.confusion_matrix(y_test_data, predicted)
+
+
 	bokeh_mod = BokehModel()
-	plot = bokeh_mod.plot.circle([1,2], [3,4])
+	#plot = bokeh_mod.plot.circle([1,2], [3,4])
+	plot = bokeh_mod.heat_map(cm)
 	plot_script, plot_div = bokeh_mod.components(plot)
 
 	#plot_div = Markup('<div class="plotdiv"></div>')
