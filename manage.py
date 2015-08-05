@@ -12,7 +12,7 @@ COV = None
 
 if os.environ.get('FLASK_COVERAGE'):
 	import coverage
-	COV = coverage.coverage(branch=True, include='predictocite/*')
+	COV = coverage.coverage(branch=True, include='app/*')
 	COV.start()
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')

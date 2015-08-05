@@ -50,7 +50,7 @@ try:
 
     client = MongoClient('localhost', 27017)
 
-    db = client.pcite
+    db = client.test
 
     articles = db['articlemodels']
 

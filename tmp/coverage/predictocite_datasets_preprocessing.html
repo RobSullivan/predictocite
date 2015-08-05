@@ -5,7 +5,7 @@
     
     
     <meta http-equiv='X-UA-Compatible' content='IE=emulateIE7' />
-    <title>Coverage for predictocite\datasets\preprocessing: 83%</title>
+    <title>Coverage for predictocite\datasets\preprocessing: 73%</title>
     <link rel='stylesheet' href='style.css' type='text/css'>
     
     <script type='text/javascript' src='jquery.min.js'></script>
@@ -21,13 +21,13 @@
 <div id='header'>
     <div class='content'>
         <h1>Coverage for <b>predictocite\datasets\preprocessing</b> :
-            <span class='pc_cov'>83%</span>
+            <span class='pc_cov'>73%</span>
         </h1>
         <img id='keyboard_icon' src='keybd_closed.png'>
         <h2 class='stats'>
             28 statements &nbsp;
-            <span class='run hide_run shortkey_r button_toggle_run'>24 run</span>
-            <span class='mis shortkey_m button_toggle_mis'>4 missing</span>
+            <span class='run hide_run shortkey_r button_toggle_run'>21 run</span>
+            <span class='mis shortkey_m button_toggle_mis'>7 missing</span>
             <span class='exc shortkey_x button_toggle_exc'>0 excluded</span>
             
                 <span class='par run hide_run shortkey_p button_toggle_par'>1 partial</span>
@@ -108,16 +108,16 @@
 <p id='n43' class='pln'><a href='#n43'>43</a></p>
 <p id='n44' class='stm run hide_run'><a href='#n44'>44</a></p>
 <p id='n45' class='stm run hide_run'><a href='#n45'>45</a></p>
-<p id='n46' class='stm run hide_run'><a href='#n46'>46</a></p>
+<p id='n46' class='stm mis'><a href='#n46'>46</a></p>
 <p id='n47' class='pln'><a href='#n47'>47</a></p>
 <p id='n48' class='stm run hide_run'><a href='#n48'>48</a></p>
 <p id='n49' class='pln'><a href='#n49'>49</a></p>
 <p id='n50' class='stm run hide_run'><a href='#n50'>50</a></p>
-<p id='n51' class='stm run hide_run'><a href='#n51'>51</a></p>
+<p id='n51' class='stm mis'><a href='#n51'>51</a></p>
 <p id='n52' class='pln'><a href='#n52'>52</a></p>
 <p id='n53' class='pln'><a href='#n53'>53</a></p>
 <p id='n54' class='pln'><a href='#n54'>54</a></p>
-<p id='n55' class='stm run hide_run'><a href='#n55'>55</a></p>
+<p id='n55' class='stm mis'><a href='#n55'>55</a></p>
 <p id='n56' class='pln'><a href='#n56'>56</a></p>
 <p id='n57' class='pln'><a href='#n57'>57</a></p>
 <p id='n58' class='pln'><a href='#n58'>58</a></p>
@@ -184,16 +184,16 @@
 <p id='t43' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&quot;&quot;&quot;Transforms into a vector, probably should rename from bag_of_words&quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
 <p id='t44' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>training_data</span> <span class='op'>=</span> <span class='nam'>self</span><span class='op'>.</span><span class='nam'>split_data</span><span class='op'>(</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
 <p id='t45' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>term_freq_vectors</span> <span class='op'>=</span> <span class='nam'>self</span><span class='op'>.</span><span class='nam'>count_vect</span><span class='op'>.</span><span class='nam'>fit_transform</span><span class='op'>(</span><span class='nam'>training_data</span><span class='op'>[</span><span class='str'>&#39;train&#39;</span><span class='op'>]</span><span class='op'>)</span> <span class='com'># this changes state of self.count_vect</span><span class='strut'>&nbsp;</span></p>
-<p id='t46' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>term_freq_vectors</span><span class='strut'>&nbsp;</span></p>
+<p id='t46' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>term_freq_vectors</span><span class='strut'>&nbsp;</span></p>
 <p id='t47' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t48' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>def</span> <span class='nam'>frequency_term_matrix</span><span class='op'>(</span><span class='nam'>self</span><span class='op'>,</span> <span class='nam'>data</span><span class='op'>)</span><span class='op'>:</span><span class='strut'>&nbsp;</span></p>
 <p id='t49' class='pln'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='str'>&quot;&quot;&quot;takes train set and returns frequency_term matrix&quot;&quot;&quot;</span><span class='strut'>&nbsp;</span></p>
 <p id='t50' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>self</span><span class='op'>.</span><span class='nam'>count_vect</span><span class='op'>.</span><span class='nam'>fit_transform</span><span class='op'>(</span><span class='nam'>data</span><span class='op'>)</span><span class='op'>;</span><span class='strut'>&nbsp;</span></p>
-<p id='t51' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>sparse_matrix</span> <span class='op'>=</span> <span class='nam'>self</span><span class='op'>.</span><span class='nam'>count_vect</span><span class='op'>.</span><span class='nam'>transform</span><span class='op'>(</span><span class='nam'>data</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t51' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='nam'>sparse_matrix</span> <span class='op'>=</span> <span class='nam'>self</span><span class='op'>.</span><span class='nam'>count_vect</span><span class='op'>.</span><span class='nam'>transform</span><span class='op'>(</span><span class='nam'>data</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
 <p id='t52' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t53' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t54' class='pln'><span class='strut'>&nbsp;</span></p>
-<p id='t55' class='stm run hide_run'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>sparse_matrix</span><span class='op'>.</span><span class='nam'>todense</span><span class='op'>(</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
+<p id='t55' class='stm mis'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class='key'>return</span> <span class='nam'>sparse_matrix</span><span class='op'>.</span><span class='nam'>todense</span><span class='op'>(</span><span class='op'>)</span><span class='strut'>&nbsp;</span></p>
 <p id='t56' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t57' class='pln'><span class='strut'>&nbsp;</span></p>
 <p id='t58' class='pln'><span class='strut'>&nbsp;</span></p>
