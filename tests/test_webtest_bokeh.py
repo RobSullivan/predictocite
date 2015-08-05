@@ -72,4 +72,4 @@ class TestEmbedPlot(PredictoCiteTestCase):
 	def test_can_insert_js_snippet_into_results_page(self):
 		res = self.app.get('/result')
 		script = res.html.find_all('script')
-		assert_equal(len(script), 4) # ok this is fragile. Works on assumption no more js scripts will be added
+		assert_equal(len(script), 4) # very fragile test. Works on assumption no more js scripts will be added
