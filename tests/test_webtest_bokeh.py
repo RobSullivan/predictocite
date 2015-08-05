@@ -62,3 +62,9 @@ class TestEmbedPlot(PredictoCiteTestCase):
 		res = self.app.get('/result')
 		div = res.html.find('div', attrs={"class":"plotdiv"})
 		assert_true(div)
+
+	def test_bokeh_js_is_present(self):
+		res = self.app.get('/result')
+		script = res.html.find('script', 
+			attrs={"src":"http://cdn.pydata.org/bokeh/release/bokeh-0.9.2.min.js"})
+		assert_true(script)
