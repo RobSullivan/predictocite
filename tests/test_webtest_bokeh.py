@@ -73,3 +73,8 @@ class TestEmbedPlot(PredictoCiteTestCase):
 		res = self.app.get('/result')
 		script = res.html.find_all('script')
 		assert_equal(len(script), 4) # very fragile test. Works on assumption no more js scripts will be added
+
+	def test_now_send_real_bokeh_values(self):
+		res = self.app.get('/result')
+		div = res.html.find('div', attrs={"class":"plotdiv", "id": "."})
+		assert_true(div)

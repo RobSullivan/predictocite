@@ -60,4 +60,14 @@ class TestX_TestDataIsAvailable(PredictoCiteTestCase):
 	def test_x_test_data_is_available(self):
 		self.assertTrue(self.x_test)
 
+class TestBokehModel(PredictoCiteTestCase):
+
+	def setUp(self):
+		super(TestBokehModel, self).setUp()
+		self.bokeh_mod = BokehMod()
+
+	def test_bokeh_model_exists(self):
+		self.assert_true(self.bokeh_mod)
+
+
 
