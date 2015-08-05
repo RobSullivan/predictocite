@@ -76,5 +76,5 @@ class TestEmbedPlot(PredictoCiteTestCase):
 
 	def test_now_send_real_bokeh_values(self):
 		res = self.app.get('/result')
-		div = res.html.find('div', attrs={"class":"plotdiv", "id": "."})
+		div = res.html.find('div', attrs={"class":"plotdiv"})
 		assert_true(div)

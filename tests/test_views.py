@@ -47,5 +47,12 @@ class TestResultView(PredictoCiteTestCase):
 
 
 
+class TestResultFunction(PredictoCiteTestCase):
 
+	def setUp(self):
+		super(TestResultFunction, self).setUp()
+
+	def test_result_function(self):
+		self.assertTrue(views.result)
+		self.assertTrue(self.app)		
 

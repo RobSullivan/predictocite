@@ -4,7 +4,7 @@ from unittest import mock
 from nose.tools import *
 
 from tests.base import PredictoCiteTestCase
-from app.models import NbClf, UserDataTransform, YTestData, XTestData
+from app.models import NbClf, UserDataTransform, YTestData, XTestData, BokehModel
 
 class TestClassiferModel(PredictoCiteTestCase):
 
@@ -64,10 +64,14 @@ class TestBokehModel(PredictoCiteTestCase):
 
 	def setUp(self):
 		super(TestBokehModel, self).setUp()
-		self.bokeh_mod = BokehMod()
+		self.bokeh_mod = BokehModel()
 
 	def test_bokeh_model_exists(self):
-		self.assert_true(self.bokeh_mod)
+		self.assertTrue(self.bokeh_mod)
+
+	def test_bokeh_mod_has_bokeh_properties(self):
+		self.assertTrue(self.bokeh_mod.plot)
+		self.assertTrue(self.bokeh_mod.components)
 
 
 

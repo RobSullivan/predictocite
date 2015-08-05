@@ -3,7 +3,8 @@ import sys
 
 from . import db
 
-
+from bokeh.plotting import figure
+from bokeh.embed import components
 
 class Role(db.Model):
 	__tablename__ = 'roles'
@@ -76,3 +77,11 @@ class XTestData(object):
 	def __init__(self):
 		with open('X_test.pickle', 'rb') as f:
 			self.data = pickle.load(f)
+
+class BokehModel(object):
+	"""
+	BokehModel provides interface to Bokeh plotting library
+	"""
+	def __init__(self):
+		self.plot = figure()
+		self.components = components

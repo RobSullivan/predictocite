@@ -2,7 +2,7 @@ from flask import render_template, session, redirect, url_for, Markup
 from . import main
 from .forms import TitleAbstractForm
 from .. import db
-from ..models import User, NbClf, UserDataTransform, YTestData, XTestData
+from ..models import User, NbClf, UserDataTransform, YTestData, XTestData, BokehModel
 
 import numpy as np
 
@@ -66,8 +66,12 @@ def result():
 
 	accuracy  = round(np.mean(predicted == y_test_data)*100, 2)
 
-	plot_div = Markup('<div class="plotdiv"></div>')
-	plot_script = Markup('<script></script>')
+	bokeh_mod = BokehModel()
+	plot = bokeh_mod.plot.circle([1,2], [3,4])
+	plot_script, plot_div = bokeh_mod.components(plot)
+
+	#plot_div = Markup('<div class="plotdiv"></div>')
+	#plot_script = Markup('<script></script>')
 
 
 	return render_template('result.html', 
