@@ -67,9 +67,10 @@ def result():
 	accuracy  = round(np.mean(predicted == y_test_data)*100, 2)
 
 	div = Markup('<div class="plotdiv"></div>')
+	plot_script = Markup('<script></script>')
 
 
 	return render_template('result.html', 
 		title=session.get('title'), user_data=session.get('user_data'), 
 		abstract=session.get('abstract'), prediction=session.get('prediction'),
-		accuracy=accuracy, div=div)
+		accuracy=accuracy, div=div, plot_script=plot_script)

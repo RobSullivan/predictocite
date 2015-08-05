@@ -68,3 +68,8 @@ class TestEmbedPlot(PredictoCiteTestCase):
 		script = res.html.find('script', 
 			attrs={"src":"http://cdn.pydata.org/bokeh/release/bokeh-0.9.2.min.js"})
 		assert_true(script)
+
+	def test_can_insert_js_snippet_into_results_page(self):
+		res = self.app.get('/result')
+		script = res.html.find_all('script')
+		assert_equal(len(script), 4) # ok this is fragile. Works on assumption no more js scripts will be added
