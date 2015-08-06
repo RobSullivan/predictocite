@@ -83,3 +83,15 @@ plot = figure()
 plot.circle([1,2], [3,4])
 
 script, div = components(plot)
+
+
+"""
+How to This lets us nicely see the relationship between predicted and actual classes.
+The axis show the log probability
+colour to identify the actual class for items and draw a line to represent the decision boundary 
+
+
+predicted vs y_test
+
+
+"""
