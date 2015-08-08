@@ -70,3 +70,6 @@ share/
 # sqlite dbs. don't track for now
 data-dev.sqlite
 data-test.sqlite
+
+#pypi testing
+.pypirc
