@@ -51,14 +51,12 @@ predicted = clf.predict(articles_test)
 # What's np.mean doing
 np.mean(predicted == y_test)
 
-######Classification report################
 
 
-print(metrics.classification_report(y_test, predicted, target_names=y_test))
 
-#######Confusion matrix#################
 
-metrics.confusion_matrix(y_test, predicted)
+
+
 
 
 ######Grid search
@@ -74,3 +72,15 @@ Can't get this working http://scikit-learn.org/stable/tutorial/text_analytics/wo
 Can't get this working http://scikit-learn.org/stable/modules/cross_validation.html#computing-cross-validated-metrics
 
 """
+
+if __name__ == '__main__':
+	######Accuracy#########
+	print(np.mean(predicted == y_test)*100)
+
+	######Classification report################
+	print(metrics.classification_report(y_test, predicted, target_names=y_test))
+
+
+	#######Confusion matrix#################
+
+	#print(metrics.confusion_matrix(y_test, predicted))
