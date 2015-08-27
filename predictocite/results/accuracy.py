@@ -48,15 +48,6 @@ articles_test_tfidf = tf_transformer.transform(articles_test)
 
 predicted = clf.predict(articles_test)
 
-# What's np.mean doing
-np.mean(predicted == y_test)
-
-
-
-
-
-
-
 
 
 ######Grid search
