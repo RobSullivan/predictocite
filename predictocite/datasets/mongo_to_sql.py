@@ -43,3 +43,4 @@ for doc in articles.find(
     
 
 conn.commit()
+conn.close()
