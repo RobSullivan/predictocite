@@ -2,9 +2,9 @@
 
 modelled on https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/datasets/twenty_newsgroups.py#L151
 
-This dataset loader will retrieve title and abstract data of citation groups 
+sqlite3 code from https://docs.python.org/3.4/library/sqlite3.html
 
-Would it be useful to write the data out to pickles?
+This dataset loader will retrieve title and abstract data of citation groups 
 
 The `fetch_citationgroups` function will not vectorize the data into numpy arrays
 
@@ -17,6 +17,7 @@ data comes back as JSON
 import json
 import logging
 import random
+import sqlite3
 
 import numpy as np
 from pymongo import MongoClient
@@ -54,7 +55,9 @@ try:
 
     articles = db['articlemodels']
 
-    
+
+    conn = sqlite3.connect('data-articles.db')
+    cursor = conn.cursor()
 
 except Exception as e:
  	print(e)

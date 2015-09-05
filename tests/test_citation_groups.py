@@ -17,6 +17,12 @@ class TestCitationDataAttributes(unittest.TestCase):
 		self.assertTrue(citation_group in self.articles.target)
 		self.assertEqual(len(self.articles.data), len(self.articles.target))
 
+	def test_fetch_all_citationgroups(self):
+		self.articles = fetch_citationgroups()
+		self.assertTrue(self.articles)
+
+
+
 
 
 
