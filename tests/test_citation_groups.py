@@ -10,6 +10,8 @@ class TestCitationDataAttributes(unittest.TestCase):
 	def setUp(self):
 		groups = ['zero_citations', 'one_to_five_citations']
 		self.articles = fetch_citationgroups(groups)
+	
+	
 
 	def test_fetch_citationgroups(self):
 		citation_group = 'one_to_five_citations'
@@ -18,8 +20,8 @@ class TestCitationDataAttributes(unittest.TestCase):
 		self.assertEqual(len(self.articles.data), len(self.articles.target))
 
 	def test_fetch_all_citationgroups(self):
-		self.articles = fetch_citationgroups()
-		self.assertTrue(self.articles)
+		self.all_articles = fetch_citationgroups() 
+		self.assertTrue(self.all_articles)
 
 
 

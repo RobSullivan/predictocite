@@ -44,7 +44,7 @@ ch2 = SelectKBest(chi2, k=25)
 
 X_train_tfidf = ch2.fit_transform(X_train_tfidf, y_train)
 
-user_tfidf = ch2.transform(user_tfidf)
+#user_tfidf = ch2.transform(user_tfidf)
 
 #are these top features of user_tfidf or top feautres of X_train_tfidf?
 feature_names = [feature_names[i] for i in ch2.get_support(indices=True)]

@@ -84,7 +84,7 @@ def fetch_citationgroups(citation_groups=None):
 	target = list()
 	
 	
-	object_ids = list()
+	#object_ids = list()#needed?
 	
 	if citation_groups is not None:
 	
@@ -96,45 +96,72 @@ def fetch_citationgroups(citation_groups=None):
 	       	% (invalid_citation_group_name, VALIDATE_CITATION_GROUPS))
 
 	    else:
-	    	results = articles.find(
-		    {"citation_group":
-		    {'$in':citation_groups}},{"title":1, "abstract":1, "citation_group":1, "citation_count_at_two":1, "pmid":1})
+	    	#not ideal because uses placeholder instead of param substitution http://stackoverflow.com/questions/283645/python-list-in-sql-query-as-parameter
+	    	placeholder = '?'
+	    	placeholders = ', '.join(placeholder for i in citation_groups)
+	    	query = 'SELECT title, abstract, citation_group, pmid FROM articles WHERE citation_group in (%s)' % placeholders
+	    	results_sql = cursor.execute(query, citation_groups)
+
+	    	# results = articles.find(
+		    # {"citation_group":
+		    # {'$in':citation_groups}},{"title":1, "abstract":1, "citation_group":1, "citation_count_at_two":1, "pmid":1})
 
 	elif citation_groups is None: # get all groups
 
-		results = articles.find({
-			"citation_group": {"$exists": "true"}},
-			{"title": 1, "abstract":1, "citation_group":1, "citation_count_at_two":1, "pmid":1})
+		results_sql = cursor.execute('SELECT title, abstract, citation_group, pmid FROM articles') 
 
+		# articles.find({
+		# 	"citation_group": {"$exists": "true"}},
+		# 	{"title": 1, "abstract":1, "citation_group":1, "citation_count_at_two":1, "pmid":1})
 
-	"""
-	define data attributes 
-	"""
-	data.data = list(results) # chuck data into data attribute as a list. 
-	#THEN SHUFFLE
-	random.shuffle(data.data)
-	"""target is the category label for each document. it's like an index and should
-	be the same len as data.data attribute
-	"""
-	"""
-	data.target should be indexable np.array e.g. np.array(target) of citation_groups for documents.
-	e.g. data.target[0] should be citation_group label of data.data[0]
-	BUT, I could spend too long figuring that out so I am using a list for now. 
-	HOWEVER there is then no relationship between target and target_names that you get in sklearn.
-	ALSO, will a list be a safe data type to use, as opposed to a tuple?
-	"""
-	data.target = [x.pop('citation_group') for x in data.data]
-	data.object_ids = [x.pop('_id') for x in data.data]#removes ObjectIds from data
-	data.citation_count = [x.pop('citation_count_at_two') for x in data.data]
-	data.description = 'the citation_groups'
-	data.target_names = results.distinct('citation_group') #using results cursor in event of citation_group=None
-	data.pmid = [x.pop('pmid') for x in data.data]
 	
-	"""
-	data.data should be an iterable which yields either str, unicode or file objects so...ugh...
-	turn each dict object into a str object and later somehow remove {}
-	"""
-	data.data = [str(x) for x in data.data]
+
+	
+	data.data = []
+	data.target = []
+	data.target_names = VALIDATE_CITATION_GROUPS
+	data.pmid = []
+
+	for title, abstract, citation_group, pmid in results_sql:
+		data.data.append(title + ' ' + abstract)
+		data.target.append(citation_group)
+		data.pmid.append(pmid)
+
+
+
+
+	
+
+
+
+	# """
+	# define data attributes 
+	# """
+	# data.data = list(results) # chuck data into data attribute as a list. 
+	# #THEN SHUFFLE?
+	# random.shuffle(data.data)
+	# """target is the category label for each document. it's like an index and should
+	# be the same len as data.data attribute
+	# """
+	# """
+	# data.target should be indexable np.array e.g. np.array(target) of citation_groups for documents.
+	# e.g. data.target[0] should be citation_group label of data.data[0]
+	# BUT, I could spend too long figuring that out so I am using a list for now. 
+	# HOWEVER there is then no relationship between target and target_names that you get in sklearn.
+	# ALSO, will a list be a safe data type to use, as opposed to a tuple?
+	# """
+	# data.target = [x.pop('citation_group') for x in data.data]
+	# #data.object_ids = [x.pop('_id') for x in data.data]#removes ObjectIds from data
+	# data.citation_count = [x.pop('citation_count_at_two') for x in data.data]
+	# data.description = 'the citation_groups'
+	# data.target_names = results.distinct('citation_group') #using results cursor in event of citation_group=None
+	# data.pmid = [x.pop('pmid') for x in data.data]
+	
+	# """
+	# data.data should be an iterable which yields either str, unicode or file objects so...ugh...
+	# turn each dict object into a str object and later somehow remove {}
+	# """
+	# data.data = [str(x) for x in data.data]
 	
 	
 	 
