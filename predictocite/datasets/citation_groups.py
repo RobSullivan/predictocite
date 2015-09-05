@@ -1,14 +1,12 @@
-"""Loader for the citation groups from mongodb pcite database
+"""Loader for the citation groups from sqlite3
 
 modelled on https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/datasets/twenty_newsgroups.py#L151
 
 sqlite3 code from https://docs.python.org/3.4/library/sqlite3.html
 
-This dataset loader will retrieve title and abstract data of citation groups 
+This dataset loader will retrieve title, abstract, citation_group and pmid data of articles 
 
-The `fetch_citationgroups` function will not vectorize the data into numpy arrays
-
-data comes back as JSON
+The `fetch_citationgroups` function will not vectorize the data into numpy arrays as it does in scikit-learn
 
 """
 #Copyright:
@@ -19,8 +17,6 @@ import logging
 import random
 import sqlite3
 
-import numpy as np
-from pymongo import MongoClient
 
 from .base import Bunch
 
@@ -46,16 +42,10 @@ VALIDATE_CITATION_GROUPS = set([
         "eighty_six_to_ninety_citations",
 ])
 
-#create MongoClient
+#create database connection
 try:
 
-    client = MongoClient('localhost', 27017)
-
-    db = client.pcite
-
-    articles = db['articlemodels']
-
-
+    
     conn = sqlite3.connect('data-articles.db')
     cursor = conn.cursor()
 
@@ -84,7 +74,7 @@ def fetch_citationgroups(citation_groups=None):
 	target = list()
 	
 	
-	#object_ids = list()#needed?
+	
 	
 	if citation_groups is not None:
 	
@@ -102,19 +92,10 @@ def fetch_citationgroups(citation_groups=None):
 	    	query = 'SELECT title, abstract, citation_group, pmid FROM articles WHERE citation_group in (%s)' % placeholders
 	    	results_sql = cursor.execute(query, citation_groups)
 
-	    	# results = articles.find(
-		    # {"citation_group":
-		    # {'$in':citation_groups}},{"title":1, "abstract":1, "citation_group":1, "citation_count_at_two":1, "pmid":1})
-
+	
 	elif citation_groups is None: # get all groups
 
 		results_sql = cursor.execute('SELECT title, abstract, citation_group, pmid FROM articles') 
-
-		# articles.find({
-		# 	"citation_group": {"$exists": "true"}},
-		# 	{"title": 1, "abstract":1, "citation_group":1, "citation_count_at_two":1, "pmid":1})
-
-	
 
 	
 	data.data = []
@@ -126,45 +107,6 @@ def fetch_citationgroups(citation_groups=None):
 		data.data.append(title + ' ' + abstract)
 		data.target.append(citation_group)
 		data.pmid.append(pmid)
-
-
-
-
-	
-
-
-
-	# """
-	# define data attributes 
-	# """
-	# data.data = list(results) # chuck data into data attribute as a list. 
-	# #THEN SHUFFLE?
-	# random.shuffle(data.data)
-	# """target is the category label for each document. it's like an index and should
-	# be the same len as data.data attribute
-	# """
-	# """
-	# data.target should be indexable np.array e.g. np.array(target) of citation_groups for documents.
-	# e.g. data.target[0] should be citation_group label of data.data[0]
-	# BUT, I could spend too long figuring that out so I am using a list for now. 
-	# HOWEVER there is then no relationship between target and target_names that you get in sklearn.
-	# ALSO, will a list be a safe data type to use, as opposed to a tuple?
-	# """
-	# data.target = [x.pop('citation_group') for x in data.data]
-	# #data.object_ids = [x.pop('_id') for x in data.data]#removes ObjectIds from data
-	# data.citation_count = [x.pop('citation_count_at_two') for x in data.data]
-	# data.description = 'the citation_groups'
-	# data.target_names = results.distinct('citation_group') #using results cursor in event of citation_group=None
-	# data.pmid = [x.pop('pmid') for x in data.data]
-	
-	# """
-	# data.data should be an iterable which yields either str, unicode or file objects so...ugh...
-	# turn each dict object into a str object and later somehow remove {}
-	# """
-	# data.data = [str(x) for x in data.data]
-	
-	
-	 
 
 
 	return data
