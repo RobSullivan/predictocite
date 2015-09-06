@@ -60,7 +60,7 @@ class TextPreprocessor:
 
 	def save_pickle(self, groups, tf_idf_matrix):
 		file_name = 'tf_idf_matrix'+groups[0]+'.pickle'
-		with open(file_name, 'wb') as f:
+		with open('data\\'+file_name, 'wb') as f:
 			pickle.dump(tf_idf_matrix, f, pickle.HIGHEST_PROTOCOL)
 			
 		

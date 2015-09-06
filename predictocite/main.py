@@ -42,19 +42,19 @@ y_test_filename = 'y_test.pickle'
 count_vect_filename = 'count_vect.pickle'
 tf_transformer_filename = 'tf_transformer.pickle'
 
-with open(file_name, 'wb') as f:
+with open('data\\'+file_name, 'wb') as f:
 	pickle.dump(clf, f, pickle.HIGHEST_PROTOCOL)
 
-with open(X_test_filename, 'wb') as g:
+with open('data\\'+X_test_filename, 'wb') as g:
 	pickle.dump(X_test, g, pickle.HIGHEST_PROTOCOL)
 
-with open(y_test_filename, 'wb') as h:
+with open('data\\'+y_test_filename, 'wb') as h:
 	pickle.dump(y_test, h, pickle.HIGHEST_PROTOCOL)
 
-with open(count_vect_filename, 'wb') as i:
+with open('data\\'+count_vect_filename, 'wb') as i:
 	pickle.dump(count_vect, i, pickle.HIGHEST_PROTOCOL)
 
-with open(tf_transformer_filename, 'wb') as j:
+with open('data\\'+tf_transformer_filename, 'wb') as j:
 	pickle.dump(tf_transformer, j, pickle.HIGHEST_PROTOCOL)
 
 

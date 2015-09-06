@@ -46,7 +46,7 @@ VALIDATE_CITATION_GROUPS = set([
 try:
 
     
-    conn = sqlite3.connect('data-articles.db')
+    conn = sqlite3.connect('data\data-articles.db')
     cursor = conn.cursor()
 
 except Exception as e:

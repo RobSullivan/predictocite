@@ -30,7 +30,7 @@ class NbClf():
 	"""NbClf loads and wraps clf.pickle"""
 	def __init__(self):
 		try:
-			with open('nb_classifier.pickle', 'rb') as f:
+			with open('data\\'+'nb_classifier.pickle', 'rb') as f:
 				self.clf = pickle.load(f)
 		except IOError as err:
 			print("IO Error: {0}".format(err))
@@ -42,12 +42,12 @@ class UserDataTransform():
 	user's title and abstract into a frequency matrix"""
 	def __init__(self):
 		try:
-			with open('count_vect.pickle', 'rb') as f:
+			with open('data\\'+'count_vect.pickle', 'rb') as f:
 				self.count_vect = pickle.load(f)
 		except IOError as err:
 			print("IO Error: {0}".format(err))
 		try:
-			with open('tf_transformer.pickle', 'rb') as g:
+			with open('data\\'+'tf_transformer.pickle', 'rb') as g:
 				self.tf_transformer = pickle.load(g)
 		except IOError as err:
 			print("IO Error: {0}".format(err))
@@ -63,7 +63,7 @@ class YTestData(object):
 	   and is available to use straight away.
 	"""
 	def __init__(self):
-		with open('y_test.pickle', 'rb') as f:
+		with open('data\\'+'y_test.pickle', 'rb') as f:
 			self.data = pickle.load(f)
 
 
@@ -77,7 +77,7 @@ class XTestData(object):
 	   and is available to use straight away.
 	"""
 	def __init__(self):
-		with open('X_test.pickle', 'rb') as f:
+		with open('data\\'+'X_test.pickle', 'rb') as f:
 			self.data = pickle.load(f)
 
 class BokehModel(object):
