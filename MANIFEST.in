@@ -1,0 +1,8 @@
+recursive-include app\templates *.html
+recursive-include data *
+include manage.py
+include config.py
+include test-data-examples.txt
+include numpy.exe
+include scipy.exe
+include requirements.txt
