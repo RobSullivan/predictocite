@@ -1,34 +1,29 @@
 The application code
 =====================
 
-This is a flask application
+This is the Flask application code
 
 models.py
 ---------
 
-.. auto-module:: app\models.py
-	:members:
-	:undoc-members:
+.. literalinclude:: source_code\models.py
 
 views.py
 --------
 
-.. auto-module:: app\main\views.py
-	:members:
-	:undoc-members:
+.. literalinclude:: source_code\views.py
 
 
 forms.py
 --------
 
-.. auto-module:: app\main\forms.py
-	:members:
-	:undoc-members:
+.. literalinclude:: source_code\forms.py
 
 
 errors.py
 ---------
 
-.. auto-module:: app\main\errors.py
-	:members:
-	:undoc-members:
+.. literalinclude:: source_code\errors.py
+
+
+

@@ -55,17 +55,14 @@ except Exception as e:
 
 
 def fetch_citationgroups(citation_groups=None):
-	"""Load the citation group data and define data, target and 
+	"""
+	Load the citation group data and define data, target and 
 	target_names attributes.
 
-	Parameters
-	----------
-
 	citation_groups: None or collection of string or unicode
-	    If None (default), load all the citation_groups.
-	    If not None, list of citation_groups to load (other citation_groups
-	    	ignore).
-
+	If None (default), load all the citation_groups.
+	If not None, list of citation_groups to load (other citation_groups
+	ignore).
 
 	"""
 

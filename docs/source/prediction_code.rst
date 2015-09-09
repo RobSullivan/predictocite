@@ -4,38 +4,30 @@ The classification process code
 base.py
 -------
 
-.. automodule:: predictocite.datasets.base
-   :members:
-   :undoc-members:
+.. literalinclude:: source_code\base.py
+
    
    
 citation_groups.py
 -------------------
 
-.. automodule:: predictocite.datasets.base
-   :members:
-   :undoc-members:
+.. literalinclude:: source_code\citation_groups.py
 
 
-mongo_to_sql.py
-----------------
 
-.. automodule:: predictocite.datasets.mongo_to_sql
-   :members:
-   :undoc-members:
-   
-   
-plots.py
-----------------
-
-.. automodule:: predictocite.datasets.plots
-   :members:
-   :undoc-members:
-   
    
 main.py
-----------------
+--------
 
-.. automodule:: predictocite.main
-   :members:
-   :undoc-members:
+.. literalinclude:: source_code\main.py
+
+mongo_to_sql.py
+---------------
+
+.. literalinclude:: source_code\mongo_to_sql.py
+
+
+plots.py
+--------
+
+.. literalinclude:: source_code\plots.py
